@@ -3,10 +3,11 @@ package thesurveymanager;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 
 public class Survey {
-    Question[] questions;
+    ArrayList<Question> questions = new ArrayList<Question>();
     String name;
     
     public Button createButton() {
@@ -18,11 +19,7 @@ public class Survey {
     }
     
     public void addQuestion(Question newQuestion) {
-        for(int i=0 ; i < this.questions.length ; i++ ) {
-            if(this.questions[i] == null) {
-                this.questions[i] = newQuestion;
-            }
-        }
+        questions.add(newQuestion);
     }
     
     static Survey newSurvey(String name) {
