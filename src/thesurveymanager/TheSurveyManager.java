@@ -1,25 +1,52 @@
 package thesurveymanager;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TheSurveyManager {
+   
     public static void main(String[] args) {
-
-               
-    }
-    //Método que cria o menu principal, que exibe as pesquisas disponíveis para serem respondidas
-    private static void MainMenu() {
-       JFrame frame = new JFrame("The Survey Manager");
-       JPanel panel = new JPanel();
+        Scanner s = new Scanner(System.in);
+        
+        Question question1 = Question.Create();
+        question1.message = "Responda a pergunta 1";
+        question1.alternatives.add("a) alternativa 1");
+        question1.alternatives.add("b) alternativa 2");
+        question1.alternatives.add("c) alternativa 3");
+        question1.alternatives.add("d) alternativa 4");
+        question1.alternatives.add("e) alternativa 5");
+        
+        Question question2 = Question.Create();
+        question2.message = "Responda a pergunta 2";
+        question2.alternatives.add("a) alternativa a");
+        question2.alternatives.add("b) alternativa b");
+        question2.alternatives.add("c) alternativa c");
+        question2.alternatives.add("d) alternativa d");
+        question2.alternatives.add("e) alternativa e");
+        
        
-       panel.add(Survey.newSurvey("Test Drive").createButton());
-       panel.add(Survey.newSurvey("Test Drive 2").createButton());
-     
-       frame.add(panel);
-       frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       frame.setVisible(true);
+        
+        
+        String command = s.nextLine();
+        while(!command.equals("exit")) {
+            if(command.equals("answer")) {
+                ApplySurvey();
+            }
+            else if(command.equals("check")) {
+                CheckResults();
+            }
+            command = s.nextLine();
+        }
+        
     }
+    
+    public static void ApplySurvey() {
+        Question.list.forEach(n -> n.Show());
+    }
+    
+    public static void CheckResults() {
+        Question.list.forEach(n -> n.Answers());
+    }
+    
     
 }
