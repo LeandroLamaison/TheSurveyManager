@@ -249,7 +249,7 @@ public class TheSurveyManager {
         //Para cada questão da lista, o sistema chama o método que mostra os resultados
         Question.list.forEach(n -> {
             //Exibe o id da questão
-            System.out.println("     Question " +n.id);
+            System.out.println("     Questão " + (n.id + 1));
 
             //Exibe a pergunta
             System.out.println(n.message);

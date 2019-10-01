@@ -38,7 +38,7 @@ public class Question {
     //Método que mostra a questão
     public void show() {
         //Exibe o id da questão
-        System.out.println("     Question " + this.id);
+        System.out.println("     Questão " + (this.id + 1));
         
         //Exibe a pergunta
         System.out.println(this.message);
