@@ -27,19 +27,26 @@ public class TheSurveyManager {
         question2.answers.add(new Answer("e","quinta alternativa"));
         
              
-        
+        System.out.println("    Comandos:");
+        System.out.println("habilitar -> habilitar novas respostas a pesquisa");
+        System.out.println("desabilitar -> desabilitar novas respostas a pesquisa");
+        System.out.println("responder-> responder pesquisa");
+        System.out.println("questoes -> lista de questões registradas");
+        System.out.println("resultados -> resultados da pesquisa");
+        System.out.println("histórico -> histórico de respostas");
+        System.out.println("exit -> sair ");
         //o usuário digita o primeiro comando        
         String command = s.nextLine();
         
         //essa variável controla se novas respostas estão habilitadas ou não
-        boolean allow_new_responses = false;
+        boolean allow_new_responses = true;
         
         //Interface de comando, enquanto o comando não for 'exit', ela continua rodando
         while(!command.equals("exit")) {
             switch (command) {
                 
                 //Se o comanando for answer
-                case "answer":
+                case "responder":
                     
                     //se novas respostas estiverem habilitadas, o programa cg=hama o método que aplica a pesquisa 
                     if(allow_new_responses) {
@@ -52,34 +59,45 @@ public class TheSurveyManager {
                     }   break;
                 
                 //Se o comando for 'results', o programa chama o método que mostra os resultados da pesquisa    
-                case "results":
+                case "resultados":
                     CheckResults();
                     break;
                 
                 //Se o comando for 'history', o programa chama o método que mostra 
                 //cada pesquisa respondida por cada participante    
-                case "history":
+                case "historico":
                     CheckHistory();
                     break;
                 
                 //Se o comando for 'list', o programa chama o método que mostra todas 
                 //as perguntas registradas no sistema    
-                case "list":
+                case "questoes":
                     QuestionsList();
                     break;
                 
                 //Se o comando for 'end', o programa seta o valor da variavel allow_new_responses como falso,
                 //desabilitando que a pesquisa seja respondida   
-                case "end":
+                case "desabilitar":
                     allow_new_responses = false;
                     System.out.println("Novas respostas á pesquisa estão agora desativadas");
                     break;
                 
                 //Se o comando for 'start', o programa seta o valor da variavel allow_new_responses como true,
                 //habilitando que a pesquisa seja respondida
-                case "start":
+                case "habilitar":
                     allow_new_responses = true;
                     System.out.println("Novas respostas á pesquisa estão agora ativadas");
+                    break;
+                    
+                default:
+                    System.out.println("    Comandos:");
+                    System.out.println("habilitar -> habilitar novas respostas a pesquisa");
+                    System.out.println("desabilitar -> desabilitar novas respostas a pesquisa");
+                    System.out.println("responder-> responder pesquisa");
+                    System.out.println("questoes -> lista de questões registradas");
+                    System.out.println("resultados -> resultados da pesquisa");
+                    System.out.println("histórico -> histórico de respostas");
+                    System.out.println("exit -> sair ");
                     break;
             }
             

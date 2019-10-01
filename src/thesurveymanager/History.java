@@ -8,6 +8,7 @@ public class History {
     //Lista contendo cada "histórico", ou seja uma lista com a resposta
     //dada em cada questão quando a pesquisa foi respondida
     public static ArrayList<History> list = new ArrayList<>();
+   
     
     //A lista mencionada 
     //(lista com a resposta dada em cada questão quando a pesquisa foi respondida)
