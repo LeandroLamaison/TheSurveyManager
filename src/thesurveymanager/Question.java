@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //Classe questão, contém os dados de cada questão, uma lista que as armazena
-// e metodos para exibi-las e responde-las 
+// e alguns metodos 
 public class Question {
     
     //Lista que armazena as questões registradas
@@ -36,7 +36,7 @@ public class Question {
     }
   
     //Método que mostra a questão
-    public void ShowQuestion() {
+    public void show() {
         //Exibe o id da questão
         System.out.println("     Question " + this.id);
         
@@ -47,60 +47,34 @@ public class Question {
         this.answers.forEach(n -> System.out.println(n.message));
     }
     
-    public void AnswerQuestion() {
-        //Criação de um scanner
-        Scanner s = new Scanner(System.in);
+    //Método que valida se a resposta à questão corresponde a uma das alternativas
+    public boolean validateAnswer(String answer) {
         
-        //Chama o método que mostra a questão
-        this.ShowQuestion();
-        
-        //Solicita a resposta do usuário
-        System.out.println("Digite a letra da resposta");
-        String answer = s.nextLine();
-        
-        //Enquanto a resposta não corresponder a nenhuma das alternativas,
-        //exibe uma mensagem de erro e solicita a resposta de novo
-        while(!answer.equals("a") && !answer.equals("b") && !answer.equals("c") && !answer.equals("d") && !answer.equals("e")) {
-            System.out.println("Resposta invalida. Digite a letra da resposta");
-            answer = s.nextLine();
+        //Se não for a,b,c,d ou e, retorna falso
+        if(!answer.equals("a") && !answer.equals("b") && !answer.equals("c") && !answer.equals("d") && !answer.equals("e")) {
+            return false;
         }
-        
-        //Adiciona a resposta ao último histórico criado (o que foi adicionado quando o método ApplySurvey foi chamado)
-        History.list.get(History.list.size() - 1).add( Integer.toString(this.id), answer);
-        
-        //Checa todas as respostas
-        for(int i = 0; i < this.answers.size() ; i++) {
-            
-            //Quando a resposta do usuário corresponder a uma das alternaivas
-            if(this.answers.get(i).id.equals(answer)) {
-                
-                //Soma mais um ao contador da alternativa selecionada
-                this.answers.get(i).count += 1;
-                break;
-            }
-            
+        //Se for igual a um destes, retorna verdadeiro
+        else {
+            return true;
         }
-        
-        //Linha em branco
-        System.out.println("");   
     }
     
-    //Método que mostra os resultados da pesquisa (número de respostas por alternativas e porcentagem )
-    public void getAnswers() {
-        //Exibe o id da questão
-        System.out.println("     Question " + this.id);
+    //Método que registra nova resposta á questão
+    public void addAnswer(String answer) {
         
-        //Exibe a pergunta
-        System.out.println(this.message);
-        
-        //Exibe cada uma das alternativas, juntamente com o 
-        //número de vezes que foram selecionadas e a porcentagem
-        this.answers.forEach(answer -> {
-            System.out.println(answer.message + " --- " + answer.count + " --- " + this.getPercent(answer));
-        });
-        
-        //Linha em branco
-        System.out.println("");
+            for(int i = 0; i < this.answers.size() ; i++) {
+                
+                //Quando a resposta do usuário corresponder a uma das alternaivas
+                if(this.answers.get(i).id.equals(answer)) {
+                    //Soma mais um ao contador da alternativa selecionada
+                    this.answers.get(i).count += 1;
+                    
+                    //E adiciona a resposta ao histórico
+                    History.list.get(History.list.size() - 1).add( Integer.toString(this.id), answer);
+                    break;
+                }
+            } 
     }
     
     
@@ -125,7 +99,7 @@ public class Question {
         }
         
         //retorna a procentagem 
-        return new String(percent + "%");
+        return percent + "%";
     }
     
     
