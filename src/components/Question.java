@@ -1,4 +1,4 @@
-package thesurveymanager;
+package components;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,6 +13,10 @@ public class Question {
         this.message = message;      
         Question.list.add(this);   
         this.id = Question.list.indexOf(this); 
+    }
+    
+    public static Question get(int index) {
+        return Question.list.get(index);
     }
   
     public void show() {

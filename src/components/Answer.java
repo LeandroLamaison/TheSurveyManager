@@ -1,4 +1,4 @@
-package thesurveymanager;
+package components;
 
 public class Answer {
     public String message = new String();

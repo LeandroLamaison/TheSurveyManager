@@ -1,4 +1,4 @@
-package thesurveymanager;
+package components;
 
 import java.util.Scanner;
 
