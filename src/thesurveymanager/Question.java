@@ -11,13 +11,13 @@ public class Question implements Serializable{
     private ArrayList<Alternative> alternatives;
     private int answer_count;
     
-    Question(String message, ArrayList<Alternative> alternatives) {
+    Question(String message) {
         this.ID = id_count;
         id_count++;
         
         this.message = message;
-        this.alternatives = alternatives;
         this.answer_count = 0;
+        this.alternatives = new ArrayList<>();
     }
 
     public int getId() {
@@ -44,5 +44,9 @@ public class Question implements Serializable{
                 alt.increment();
             };
         });
+    }
+    
+    public void addAlternative(char option, String alternative) {
+        alternatives.add(new Alternative(this.ID,option,alternative));
     }
 }

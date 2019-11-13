@@ -39,55 +39,12 @@ public class ResultsScreen extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         jTextArea1.setRows(5);
         TheSurveyManager.questions.forEach(question -> {
-            int percentage;
-
-            jTextArea1.append("\n " + question.getMessage());
-
-            //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            if(question.getAlternatives().get(0).getCount() == 0) {
-                percentage = 0;
-            }
-            else {
-                percentage = question.getAnswerCount() * 100 / question.getAlternatives().get(0).getCount();
-            }
-            jTextArea1.append("\n    a) " + question.getAlternatives().get(0).getMessage() + " --- " + question.getAlternatives().get(0).getCount() + " --- " + percentage + "%");
-            //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            if(question.getAlternatives().get(1).getCount() == 0) {
-                percentage = 0;
-            }
-            else {
-                percentage = question.getAnswerCount() * 100 / question.getAlternatives().get(1).getCount();
-            }
-            jTextArea1.append("\n    b) " + question.getAlternatives().get(1).getMessage() + " --- " + question.getAlternatives().get(1).getCount() + " --- " + percentage + "%");
-            //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            if(question.getAlternatives().get(2).getCount() == 0) {
-                percentage = 0;
-            }
-            else {
-                percentage = question.getAnswerCount() * 100 / question.getAlternatives().get(2).getCount();
-            }
-            jTextArea1.append("\n    c) " + question.getAlternatives().get(2).getMessage() + " --- " + question.getAlternatives().get(2).getCount() + " --- " + percentage + "%");
-            //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            if(question.getAlternatives().get(3).getCount() == 0) {
-                percentage = 0;
-            }
-            else {
-                percentage = question.getAnswerCount() * 100 / question.getAlternatives().get(3).getCount();
-            }
-            jTextArea1.append("\n    d) " + question.getAlternatives().get(3).getMessage() + " --- " + question.getAlternatives().get(3).getCount() + " --- " + percentage + "%");
-            //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            if(question.getAlternatives().get(4).getCount() == 0) {
-                percentage = 0;
-            }
-            else {
-                percentage = question.getAnswerCount() * 100 / question.getAlternatives().get(4).getCount();
-            }
-            jTextArea1.append("\n    e) " + question.getAlternatives().get(4).getMessage() + " --- " + question.getAlternatives().get(4).getCount() + " --- " + percentage + "%");
-            //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+            jTextArea1.append("     " + question.getMessage() + "\n");
+            question.getAlternatives().forEach(alt -> {
+                jTextArea1.append(alt.getMessage() + " --- " + alt.getCount() + " --- " + alt.getPercentage() + "% \n");
+            });
             jTextArea1.append("\n \n");
         });
-
         jTextArea1.setEditable(false);
         jScrollPane1.setViewportView(jTextArea1);
 
