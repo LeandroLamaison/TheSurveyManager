@@ -123,6 +123,8 @@ public class QuestionScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+        this.setVisible(false);
+        
         String answer = new String();
         
         if(Alt1TextPane.isSelected()) {

@@ -32,6 +32,7 @@ public class InitialScreen extends javax.swing.JFrame {
 
         AdmButton = new javax.swing.JButton();
         AnswerButton = new javax.swing.JButton();
+        ResultsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,18 +47,28 @@ public class InitialScreen extends javax.swing.JFrame {
             }
         });
 
+        ResultsButton.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        ResultsButton.setText("Resultados");
+        ResultsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResultsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
+                .addGap(192, 192, 192)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(AdmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(AnswerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ResultsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AnswerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(165, 165, 165))))
         );
         layout.setVerticalGroup(
@@ -65,7 +76,9 @@ public class InitialScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(AdmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(ResultsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(AnswerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
@@ -74,8 +87,14 @@ public class InitialScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AnswerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnswerButtonActionPerformed
+        this.setVisible(false);
         TheSurveyManager.user_interface.beginSurvey();
     }//GEN-LAST:event_AnswerButtonActionPerformed
+
+    private void ResultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResultsButtonActionPerformed
+        this.setVisible(false);
+        TheSurveyManager.user_interface.showResults();
+    }//GEN-LAST:event_ResultsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,5 +129,6 @@ public class InitialScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdmButton;
     private javax.swing.JButton AnswerButton;
+    private javax.swing.JButton ResultsButton;
     // End of variables declaration//GEN-END:variables
 }
