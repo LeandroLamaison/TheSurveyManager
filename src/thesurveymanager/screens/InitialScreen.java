@@ -38,6 +38,11 @@ public class InitialScreen extends javax.swing.JFrame {
 
         AdmButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         AdmButton.setText("Administrador");
+        AdmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdmButtonActionPerformed(evt);
+            }
+        });
 
         AnswerButton.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         AnswerButton.setText("Responder");
@@ -95,6 +100,11 @@ public class InitialScreen extends javax.swing.JFrame {
         this.setVisible(false);
         TheSurveyManager.user_interface.showResults();
     }//GEN-LAST:event_ResultsButtonActionPerformed
+
+    private void AdmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmButtonActionPerformed
+        this.setVisible(false);
+        TheSurveyManager.user_interface.adm();
+    }//GEN-LAST:event_AdmButtonActionPerformed
 
     /**
      * @param args the command line arguments

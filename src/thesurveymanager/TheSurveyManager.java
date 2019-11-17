@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class TheSurveyManager {
     public static ArrayList<Question> questions;
+    public static ArrayList<Answer> answers;
     public static UserInterface user_interface = new UserInterface();
             
     public static void main(String[] args) {
@@ -31,7 +32,8 @@ public class TheSurveyManager {
        questions.get(2).addAlternative('c',"Alternativa c");
        questions.get(2).addAlternative('d',"Alternativa d");
        questions.get(2).addAlternative('e',"Alternativa e");
- 
+       
+       answers = new ArrayList<>();
        user_interface.init();  
     }
     
@@ -39,9 +41,21 @@ public class TheSurveyManager {
         for (Question q : questions) {
             if(q == question) {
                 q.addAnswer(alternative);
+                answers.get(answers.size() - 1).add(q, alternative);
                 break;
             }
         }
+    }
+    
+    public static void addQuestion(String message, String a, String b, String c, String d, String e) {
+        Question question = new Question(message);
+        question.addAlternative('a', a);
+        question.addAlternative('b', b);
+        question.addAlternative('c', c);
+        question.addAlternative('d', d);
+        question.addAlternative('e', e);
+        
+        TheSurveyManager.questions.add(question);
     }
     
     
