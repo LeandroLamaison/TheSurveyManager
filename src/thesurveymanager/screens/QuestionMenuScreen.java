@@ -122,11 +122,13 @@ public class QuestionMenuScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_AddQuestionButtonActionPerformed
 
     private void RemoveQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveQuestionButtonActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        TheSurveyManager.user_interface.removeQuestion();
     }//GEN-LAST:event_RemoveQuestionButtonActionPerformed
 
     private void ChangeAlternativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeAlternativeButtonActionPerformed
-        // TODO add your handling code here:
+       this.setVisible(false);
+       TheSurveyManager.user_interface.changeAlternative();
     }//GEN-LAST:event_ChangeAlternativeButtonActionPerformed
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed

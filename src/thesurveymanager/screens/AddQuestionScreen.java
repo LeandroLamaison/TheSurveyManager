@@ -129,7 +129,8 @@ public class AddQuestionScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_AddQuestionButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-        // TODO add your handling code here:
+       this.setVisible(false);
+       TheSurveyManager.user_interface.questionMenu();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     /**

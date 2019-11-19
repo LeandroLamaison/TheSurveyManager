@@ -5,12 +5,7 @@
  */
 package thesurveymanager;
 
-import thesurveymanager.screens.AddQuestionScreen;
-import thesurveymanager.screens.AdmScreen;
-import thesurveymanager.screens.InitialScreen;
-import thesurveymanager.screens.QuestionMenuScreen;
-import thesurveymanager.screens.QuestionScreen;
-import thesurveymanager.screens.ResultsScreen;
+import thesurveymanager.screens.*;
 
 public class UserInterface {
     private InitialScreen initial_screen;
@@ -19,6 +14,8 @@ public class UserInterface {
     private AdmScreen adm_screen;
     private QuestionMenuScreen question_menu_screen;
     private AddQuestionScreen add_question_screen;
+    private RemoveQuestionScreen remove_question_screen;
+    private ChangeAlternativeScreen change_alternative_screen;
     
     
     public void init() {
@@ -67,6 +64,30 @@ public class UserInterface {
     public void confirmAddQuestion(String message, String a, String b, String c, String d, String e) {
         TheSurveyManager.addQuestion(message, a, b, c, d, e);
         question_menu_screen.setVisible(true);        
+    }
+    
+    
+    public void removeQuestion() {
+        remove_question_screen = new RemoveQuestionScreen();
+        remove_question_screen.setVisible(true);
+    }
+    
+    public void confirmRemoveQuestion(int id) {
+        
+        TheSurveyManager.questions.remove(id - 1);
+        
+        question_menu_screen.setVisible(true);
+    }
+    
+    
+    public void changeAlternative() {
+        change_alternative_screen = new ChangeAlternativeScreen();
+        change_alternative_screen.setVisible(true);
+    }
+    
+    public void confirmChangeAlternative(int question_id, char alt_id, String new_alternative) {
+        TheSurveyManager.questions.get(question_id - 1).getAlternative(alt_id).setMessage(new_alternative);
+        question_menu_screen.setVisible(true);
     }
     
 }

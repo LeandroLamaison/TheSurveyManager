@@ -32,6 +32,18 @@ public class Question implements Serializable{
         return alternatives;
     }
     
+    public Alternative getAlternative(char id) {
+        Alternative alt = null;
+        
+        for(int i = 0; i <= this.alternatives.size() - 1; i++) {
+            if(this.alternatives.get(i).getID() == id) {
+                alt = this.alternatives.get(i);
+            }
+        }
+        
+        return alt;
+    }
+    
     public int getAnswerCount() {
         return answer_count;
     }

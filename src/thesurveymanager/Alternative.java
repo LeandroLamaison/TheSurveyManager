@@ -42,4 +42,8 @@ public class Alternative {
         }
     }
     
+    public void setMessage(String message) {
+        this.message = this.ID + ") " + message;
+    }
+    
 }
