@@ -9,14 +9,14 @@ import thesurveymanager.TheSurveyManager;
 
 /**
  *
- * @author adm
+ * @author IESA CNEC
  */
-public class RemoveQuestionScreen extends javax.swing.JFrame {
+public class RemoveAnswerScreen extends javax.swing.JFrame {
 
     /**
-     * Creates new form RemoveQuestionScreen
+     * Creates new form RemoveAnswerScreen
      */
-    public RemoveQuestionScreen() {
+    public RemoveAnswerScreen() {
         initComponents();
     }
 
@@ -29,26 +29,19 @@ public class RemoveQuestionScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        IdTextField = new javax.swing.JTextField();
         IdLabelTextField = new javax.swing.JTextField();
-        CancelButton = new javax.swing.JButton();
+        IdTextField = new javax.swing.JTextField();
         ConfirmButton = new javax.swing.JButton();
+        CancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
-        IdTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         IdLabelTextField.setBackground(new java.awt.Color(204, 204, 204));
+        IdLabelTextField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         IdLabelTextField.setText("ID:");
         IdLabelTextField.setEditable(false);
 
-        CancelButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        CancelButton.setText("CANCELAR");
-        CancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelButtonActionPerformed(evt);
-            }
-        });
+        IdTextField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         ConfirmButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         ConfirmButton.setText("CONFIRMAR");
@@ -58,61 +51,69 @@ public class RemoveQuestionScreen extends javax.swing.JFrame {
             }
         });
 
+        CancelButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        CancelButton.setText("CANCELAR");
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGap(22, 22, 22)
+                .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(IdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IdLabelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addComponent(IdLabelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(151, 151, 151))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(158, 158, 158)
                 .addComponent(IdLabelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(IdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ConfirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(IdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
+     this.setVisible(false);
+     TheSurveyManager.user_interface.history();
+    }//GEN-LAST:event_CancelButtonActionPerformed
+
     private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
-        this.setVisible(false);
-        
-        try {
+    this.setVisible(false);
+    
+    try {
             Integer.parseInt(IdTextField.getText());
         } catch (Exception e) {
             System.out.println(e);
-            TheSurveyManager.user_interface.questionMenu();
+            TheSurveyManager.user_interface.history();
         }
-        
-        int id = Integer.parseInt(IdTextField.getText());
-        
-        if(id <= 0) TheSurveyManager.user_interface.questionMenu();
-        
-        TheSurveyManager.user_interface.confirmRemoveQuestion(id);
+    
+    int id = Integer.parseInt(IdTextField.getText());
+    
+    if(id <= 0) TheSurveyManager.user_interface.history();
+    
+    TheSurveyManager.user_interface.confirmRemoveAnswer(id - 1);
     }//GEN-LAST:event_ConfirmButtonActionPerformed
-
-    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-       this.setVisible(false);
-       TheSurveyManager.user_interface.questionMenu();
-    }//GEN-LAST:event_CancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,20 +132,20 @@ public class RemoveQuestionScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RemoveQuestionScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveAnswerScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RemoveQuestionScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveAnswerScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RemoveQuestionScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveAnswerScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RemoveQuestionScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveAnswerScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RemoveQuestionScreen().setVisible(true);
+                new RemoveAnswerScreen().setVisible(true);
             }
         });
     }

@@ -34,7 +34,7 @@ public class InitialScreen extends javax.swing.JFrame {
         AnswerButton = new javax.swing.JButton();
         ResultsButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         AdmButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         AdmButton.setText("Administrador");

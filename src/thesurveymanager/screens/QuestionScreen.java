@@ -49,7 +49,7 @@ public class QuestionScreen extends javax.swing.JFrame {
         Alt4TextPane = new javax.swing.JRadioButton();
         NextButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         QuestionTextPanel.setText(this.question.getMessage());
         QuestionTextPanel.setEditable(false);

@@ -35,7 +35,7 @@ public class QuestionMenuScreen extends javax.swing.JFrame {
         ChangeAlternativeButton = new javax.swing.JButton();
         MenuButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N

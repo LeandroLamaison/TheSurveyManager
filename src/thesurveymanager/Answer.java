@@ -1,8 +1,9 @@
 package thesurveymanager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Answer {
+public class Answer implements Serializable{
     private static int id_count = 0;
     private final int ID;
     private ArrayList<Question> questions;

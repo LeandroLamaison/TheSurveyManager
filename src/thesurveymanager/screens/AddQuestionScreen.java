@@ -38,7 +38,7 @@ public class AddQuestionScreen extends javax.swing.JFrame {
         AltDTextField = new javax.swing.JTextField();
         AltETextField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         MessageTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         MessageTextField.setText("Mensagem");

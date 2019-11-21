@@ -1,6 +1,8 @@
 package thesurveymanager;
 
-public class Alternative {
+import java.io.Serializable;
+
+public class Alternative implements Serializable{
     private int QUESTION_ID;
     private char ID;
     private String message;

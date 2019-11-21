@@ -1,39 +1,46 @@
 package thesurveymanager;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 public class TheSurveyManager {
     public static ArrayList<Question> questions;
     public static ArrayList<Answer> answers;
     public static UserInterface user_interface = new UserInterface();
             
-    public static void main(String[] args) {
-  
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        File questions_file = new File("./data/questions");
+        File answers_file = new File("./data/answers");
+        
+        if(questions_file.exists()) {
+            FileInputStream inputFile = new FileInputStream("data.bin");
+            ObjectInputStream inputObject = new ObjectInputStream(inputFile);
+            questions = (ArrayList<Question>) inputObject.readObject();
+            inputObject.close();
+            inputFile.close();
+        }
+        else {
+            questions = new ArrayList<Question>();
+        }
+        
+        if(answers_file.exists()) {
+            FileInputStream inputFile = new FileInputStream("data.bin");
+            ObjectInputStream inputObject = new ObjectInputStream(inputFile);
+            answers = (ArrayList<Answer>) inputObject.readObject();
+            inputObject.close();
+            inputFile.close();
+        }
+        else {
+            answers = new ArrayList<Answer>();
+        }
        
-       TheSurveyManager.questions = new ArrayList<>();
-       
-       TheSurveyManager.questions.add(new Question("Primeira questão"));
-       questions.get(0).addAlternative('a',"Alternativa a");
-       questions.get(0).addAlternative('b',"Alternativa b");
-       questions.get(0).addAlternative('c',"Alternativa c");
-       questions.get(0).addAlternative('d',"Alternativa d");
-       questions.get(0).addAlternative('e',"Alternativa e");
-       
-       TheSurveyManager.questions.add(new Question("Segunda questão"));
-       questions.get(1).addAlternative('a',"Alternativa a");
-       questions.get(1).addAlternative('b',"Alternativa b");
-       questions.get(1).addAlternative('c',"Alternativa c");
-       questions.get(1).addAlternative('d',"Alternativa d");
-       questions.get(1).addAlternative('e',"Alternativa e");
-       
-       TheSurveyManager.questions.add(new Question("Terceira questão"));
-       questions.get(2).addAlternative('a',"Alternativa a");
-       questions.get(2).addAlternative('b',"Alternativa b");
-       questions.get(2).addAlternative('c',"Alternativa c");
-       questions.get(2).addAlternative('d',"Alternativa d");
-       questions.get(2).addAlternative('e',"Alternativa e");
-       
-       answers = new ArrayList<>();
        user_interface.init();  
     }
     
@@ -57,6 +64,28 @@ public class TheSurveyManager {
         
         TheSurveyManager.questions.add(question);
     }
+    
+    public static int closeOperation() {
+         try {
+            FileOutputStream questionsOutputFile = new FileOutputStream("data");
+            ObjectOutputStream questionsOutputObject = new ObjectOutputStream(questionsOutputFile);
+            questionsOutputObject.writeObject(questions);
+            questionsOutputObject.close();
+            questionsOutputFile.close();
+            
+            FileOutputStream answersOutputFile = new FileOutputStream("data");
+            ObjectOutputStream answersOutputObject = new ObjectOutputStream(answersOutputFile);
+            answersOutputObject.writeObject(answers);
+            answersOutputObject.close();
+            answersOutputFile.close();
+            
+        } catch( Exception e) {
+            System.out.println(e);
+        }
+         
+        return JFrame.EXIT_ON_CLOSE;
+    }
+    
     
     
 }

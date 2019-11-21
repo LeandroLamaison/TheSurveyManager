@@ -16,6 +16,8 @@ public class UserInterface {
     private AddQuestionScreen add_question_screen;
     private RemoveQuestionScreen remove_question_screen;
     private ChangeAlternativeScreen change_alternative_screen;
+    private HistoryScreen history_screen;
+    private RemoveAnswerScreen remove_answer_screen;
     
     
     public void init() {
@@ -76,7 +78,7 @@ public class UserInterface {
         
         TheSurveyManager.questions.remove(id - 1);
         
-        question_menu_screen.setVisible(true);
+        questionMenu();
     }
     
     
@@ -88,6 +90,27 @@ public class UserInterface {
     public void confirmChangeAlternative(int question_id, char alt_id, String new_alternative) {
         TheSurveyManager.questions.get(question_id - 1).getAlternative(alt_id).setMessage(new_alternative);
         question_menu_screen.setVisible(true);
+    }
+    
+    public void history() {
+        history_screen = new HistoryScreen();
+        history_screen.setVisible(true);
+    }
+    
+    public void removeAnswer() {
+        remove_answer_screen = new RemoveAnswerScreen();
+        remove_answer_screen.setVisible(true);
+    }
+    
+    public void confirmRemoveAnswer(int id) {
+        for( int i = 0; i < TheSurveyManager.answers.size() - 1; i++) {
+            if(TheSurveyManager.answers.get(i).getID() == id) {
+                TheSurveyManager.answers.remove(i);
+                break;
+            }
+        }
+        
+        history();
     }
     
 }
