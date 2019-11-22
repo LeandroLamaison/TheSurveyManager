@@ -25,7 +25,7 @@ public class QuestionScreen extends javax.swing.JFrame {
      */
     public QuestionScreen(Question question) {
         this.question = question;
-        
+        TheSurveyManager.user_interface.closeOperation(this);
         initComponents();
     }
     
@@ -48,8 +48,6 @@ public class QuestionScreen extends javax.swing.JFrame {
         Alt5TextPane = new javax.swing.JRadioButton();
         Alt4TextPane = new javax.swing.JRadioButton();
         NextButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         QuestionTextPanel.setText(this.question.getMessage());
         QuestionTextPanel.setEditable(false);

@@ -16,6 +16,7 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
      * Creates new form ChangeAlternativeScreen
      */
     public ChangeAlternativeScreen() {
+        TheSurveyManager.user_interface.closeOperation(this);
         initComponents();
     }
 
@@ -36,8 +37,6 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
         NewAlternativeTextField = new javax.swing.JTextField();
         ConfirmButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         QuestionIdLabelTextField.setBackground(new java.awt.Color(204, 204, 204));
         QuestionIdLabelTextField.setText("Id da questão:");

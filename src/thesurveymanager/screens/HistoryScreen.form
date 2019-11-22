@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <Properties>
-    <Property name="defaultCloseOperation" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="TheSurveyManager.closeOperation()" type="code"/>
-    </Property>
-  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
@@ -72,7 +67,7 @@
             <Property name="rows" type="int" value="5"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="TheSurveyManager.answers.forEach(answer -&gt; {&#xa;    HistoryTextArea.append(&quot;Resposta &quot; + (answer.getID() + 1) + &quot;\n\n&quot;);&#xa;    for(int i = 0; i &lt;= answer.getQuestions().size() - 1; i++) {&#xa;        HistoryTextArea.append((answer.getQuestions().get(i).getId() + 1) + &quot; - &quot; + answer.getQuestions().get(i).getMessage() + &quot;\n&quot;);&#xa;        HistoryTextArea.append( answer.getAnswers().get(i).getMessage() + &quot;\n\n&quot;);&#xa;    }&#xa;    HistoryTextArea.append(&quot;---------------------- \n&quot;);&#xa;});&#xa;&#xa;HistoryTextArea.setEditable(false);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="TheSurveyManager.answers.forEach(answer -&gt; {&#xa;    HistoryTextArea.append(&quot;Resposta &quot; + (answer.getId() + 1) + &quot;\n\n&quot;);&#xa;    for(int i = 0; i &lt;= answer.getQuestions().size() - 1; i++) {&#xa;        HistoryTextArea.append((answer.getQuestions().get(i).getId() + 1) + &quot; - &quot; + answer.getQuestions().get(i).getMessage() + &quot;\n&quot;);&#xa;        HistoryTextArea.append( answer.getAnswers().get(i).getMessage() + &quot;\n\n&quot;);&#xa;    }&#xa;    HistoryTextArea.append(&quot;---------------------- \n&quot;);&#xa;});&#xa;&#xa;HistoryTextArea.setEditable(false);"/>
           </AuxValues>
         </Component>
       </SubComponents>

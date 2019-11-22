@@ -5,6 +5,11 @@
  */
 package thesurveymanager;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import thesurveymanager.screens.*;
 
 public class UserInterface {
@@ -28,7 +33,11 @@ public class UserInterface {
     public void beginSurvey() {
         question_screen = new QuestionScreen(TheSurveyManager.questions.get(0));
         
-        TheSurveyManager.answers.add(new Answer());
+        Answer answer = new Answer();
+        
+        TheSurveyManager.answers.add(answer);
+        
+        TheSurveyManager.answers.get(TheSurveyManager.answers.indexOf(answer)).setId(TheSurveyManager.answers.indexOf(answer));
         
         question_screen.setVisible(true);
     }
@@ -104,7 +113,7 @@ public class UserInterface {
     
     public void confirmRemoveAnswer(int id) {
         for( int i = 0; i < TheSurveyManager.answers.size() - 1; i++) {
-            if(TheSurveyManager.answers.get(i).getID() == id) {
+            if(TheSurveyManager.answers.get(i).getId() == id) {
                 TheSurveyManager.answers.remove(i);
                 break;
             }
@@ -113,4 +122,26 @@ public class UserInterface {
         history();
     }
     
+    public void closeOperation(JFrame frame) {
+         WindowListener exitListener = new WindowAdapter() {
+
+        public void windowClosing(WindowEvent e) {
+            int confirm = JOptionPane.showOptionDialog( 
+                    null, 
+                    "Tem certeza de que deseja encerrar o programa?",
+                    "Encerrar o Programa", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, 
+                    null, 
+                    null, 
+                    null
+            );
+            if (confirm == 0) {
+                TheSurveyManager.saveOperation();
+                System.exit(0);
+            }
+        }
+    };
+        frame.addWindowListener(exitListener);
+    }
 }

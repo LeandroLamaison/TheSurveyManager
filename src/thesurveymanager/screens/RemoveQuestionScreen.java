@@ -17,6 +17,7 @@ public class RemoveQuestionScreen extends javax.swing.JFrame {
      * Creates new form RemoveQuestionScreen
      */
     public RemoveQuestionScreen() {
+        TheSurveyManager.user_interface.closeOperation(this);
         initComponents();
     }
 
@@ -33,8 +34,6 @@ public class RemoveQuestionScreen extends javax.swing.JFrame {
         IdLabelTextField = new javax.swing.JTextField();
         CancelButton = new javax.swing.JButton();
         ConfirmButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         IdTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 

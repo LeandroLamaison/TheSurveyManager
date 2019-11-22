@@ -17,6 +17,7 @@ public class RemoveAnswerScreen extends javax.swing.JFrame {
      * Creates new form RemoveAnswerScreen
      */
     public RemoveAnswerScreen() {
+        TheSurveyManager.user_interface.closeOperation(this);
         initComponents();
     }
 
@@ -33,8 +34,6 @@ public class RemoveAnswerScreen extends javax.swing.JFrame {
         IdTextField = new javax.swing.JTextField();
         ConfirmButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         IdLabelTextField.setBackground(new java.awt.Color(204, 204, 204));
         IdLabelTextField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

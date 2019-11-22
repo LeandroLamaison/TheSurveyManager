@@ -17,6 +17,7 @@ public class AdmScreen extends javax.swing.JFrame {
      * Creates new form AdmScreen
      */
     public AdmScreen() {
+        TheSurveyManager.user_interface.closeOperation(this);
         initComponents();
     }
 
@@ -35,8 +36,6 @@ public class AdmScreen extends javax.swing.JFrame {
         MenuButton = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
-
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         QuestionsMenuButton.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         QuestionsMenuButton.setText("Questões");

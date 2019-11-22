@@ -5,6 +5,10 @@
  */
 package thesurveymanager.screens;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JOptionPane;
 import thesurveymanager.TheSurveyManager;
 
 /**
@@ -17,8 +21,9 @@ public class InitialScreen extends javax.swing.JFrame {
      * Creates new form InitialScreen
      */
     public InitialScreen() {
+       TheSurveyManager.user_interface.closeOperation(this);
+        
         initComponents();
-      
     }
 
     /**
@@ -33,8 +38,6 @@ public class InitialScreen extends javax.swing.JFrame {
         AdmButton = new javax.swing.JButton();
         AnswerButton = new javax.swing.JButton();
         ResultsButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         AdmButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         AdmButton.setText("Administrador");

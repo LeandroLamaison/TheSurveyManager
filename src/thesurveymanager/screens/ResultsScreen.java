@@ -17,6 +17,7 @@ public class ResultsScreen extends javax.swing.JFrame {
      * Creates new form ResultsScreen
      */
     public ResultsScreen() {
+        TheSurveyManager.user_interface.closeOperation(this);
         initComponents();
     }
 
@@ -32,8 +33,6 @@ public class ResultsScreen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N

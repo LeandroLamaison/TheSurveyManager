@@ -16,6 +16,7 @@ public class QuestionMenuScreen extends javax.swing.JFrame {
      * Creates new form QuestionMenuScreen
      */
     public QuestionMenuScreen() {
+        TheSurveyManager.user_interface.closeOperation(this);
         initComponents();
     }
 
@@ -34,8 +35,6 @@ public class QuestionMenuScreen extends javax.swing.JFrame {
         RemoveQuestionButton = new javax.swing.JButton();
         ChangeAlternativeButton = new javax.swing.JButton();
         MenuButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N

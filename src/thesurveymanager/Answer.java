@@ -4,22 +4,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Answer implements Serializable{
-    private static int id_count = 0;
-    private final int ID;
+    private int id;
     private ArrayList<Question> questions;
     private ArrayList<Alternative> answers;
     boolean hasAlternative;
     
     Answer() {
-        this.ID = id_count;
-        id_count++;
-        
         this.questions = new ArrayList<>();
         this.answers = new ArrayList<>();
     }
     
-    public int getID() {
-        return ID;
+    
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ArrayList<Question> getQuestions() {

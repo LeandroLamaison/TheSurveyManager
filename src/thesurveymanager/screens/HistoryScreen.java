@@ -16,6 +16,7 @@ public class HistoryScreen extends javax.swing.JFrame {
      * Creates new form HistoryScreen
      */
     public HistoryScreen() {
+        TheSurveyManager.user_interface.closeOperation(this);
         initComponents();
     }
 
@@ -33,13 +34,11 @@ public class HistoryScreen extends javax.swing.JFrame {
         RemoveButton = new javax.swing.JButton();
         MenuButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(TheSurveyManager.closeOperation());
-
         HistoryTextArea.setColumns(20);
         HistoryTextArea.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
         HistoryTextArea.setRows(5);
         TheSurveyManager.answers.forEach(answer -> {
-            HistoryTextArea.append("Resposta " + (answer.getID() + 1) + "\n\n");
+            HistoryTextArea.append("Resposta " + (answer.getId() + 1) + "\n\n");
             for(int i = 0; i <= answer.getQuestions().size() - 1; i++) {
                 HistoryTextArea.append((answer.getQuestions().get(i).getId() + 1) + " - " + answer.getQuestions().get(i).getMessage() + "\n");
                 HistoryTextArea.append( answer.getAnswers().get(i).getMessage() + "\n\n");
