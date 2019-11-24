@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Answer implements Serializable{
     private int id;
-    private ArrayList<Question> questions;
-    private ArrayList<Alternative> answers;
+    private final ArrayList<Question> questions;
+    private final ArrayList<Alternative> answers;
     boolean hasAlternative;
     
     Answer() {
@@ -14,10 +14,10 @@ public class Answer implements Serializable{
         this.answers = new ArrayList<>();
     }
     
-    
     public int getId() {
         return id;
     }
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -44,7 +44,5 @@ public class Answer implements Serializable{
         if(hasAlternative == false) {
             throw new Error("Alternative not found in question");
         }
-        
     }
-   
 }

@@ -17,11 +17,9 @@ public class TheSurveyManager {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         File questions_file = new File("data/questions");
         File answers_file = new File("data/answers");
-        File questions_id_file = new File("data/questions_id");
-        File answers_id_file = new File("data/answers_id");
+        
         
         if(questions_file.exists()) {
-            System.out.println("It exists");
             FileInputStream inputFile = new FileInputStream("data/questions");
             ObjectInputStream inputObject = new ObjectInputStream(inputFile);
             questions = (ArrayList<Question>) inputObject.readObject();
@@ -29,8 +27,7 @@ public class TheSurveyManager {
             inputFile.close();
         }
         else {
-             System.out.println("It don't exists");
-            questions = new ArrayList<Question>();
+            questions = new ArrayList<>();
         }
         
         if(answers_file.exists()) {
@@ -38,24 +35,18 @@ public class TheSurveyManager {
             ObjectInputStream inputObject = new ObjectInputStream(inputFile);
             answers = (ArrayList<Answer>) inputObject.readObject();
             inputObject.close();
-            inputFile.close();
         }
         else {
-            answers = new ArrayList<Answer>();
+            answers = new ArrayList<>();
         }
         
        
-       user_interface.init();  
+       UserInterface.initialScreen();  
     }
     
-    public static void saveAnswer(Question question, String alternative) {
-        for (Question q : questions) {
-            if(q == question) {
-                q.addAnswer(alternative);
-                answers.get(answers.size() - 1).add(q, alternative);
-                break;
-            }
-        }
+    public static void saveAnswer(Answer answer) {
+        answers.add(answer);
+        answers.get(answers.indexOf(answer)).setId(answers.indexOf(answer));
     }
     
     public static void addQuestion(String message, String a, String b, String c, String d, String e) {
@@ -68,6 +59,19 @@ public class TheSurveyManager {
         
         questions.add(question);
         questions.get(questions.indexOf(question)).setId(questions.indexOf(question));
+    }
+    
+    public static void changeAlternative(int question_id, char alt_id, String new_alt) {
+        questions.get(question_id).getAlternative(alt_id).setMessage(new_alt);
+    }
+    
+    public static void removeAnswer(int id) {
+        for( int i = 0; i < answers.size() - 1; i++) {
+            if(answers.get(i).getId() == id) {
+                answers.remove(i);
+                break;
+            }
+        }
     }
     
     public static void saveOperation() {
@@ -84,7 +88,7 @@ public class TheSurveyManager {
             answersOutputObject.close();
             answersOutputFile.close();
             
-        } catch( Exception e) {
+        } catch(Exception e) {
             System.out.println(e);
         }
     }
