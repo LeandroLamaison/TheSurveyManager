@@ -16,21 +16,22 @@ public class ResultsScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextArea = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
-        jTextArea1.setRows(5);
+        jTextArea.setColumns(20);
+        jTextArea.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jTextArea.setRows(5);
         TheSurveyManager.questions.forEach(question -> {
-            jTextArea1.append("     " + question.getMessage() + "\n");
+            jTextArea.append("     " + question.getMessage() + "\n");
             question.getAlternatives().forEach(alt -> {
-                jTextArea1.append(alt.getMessage() + " --- " + alt.getCount() + " --- " + alt.getPercentage() + "% \n");
+                jTextArea.append(alt.getMessage() + " --- " + alt.getCount() + " --- " + alt.getPercentage() + "% \n");
             });
-            jTextArea1.append("\n \n");
+            jTextArea.append("\n \n");
         });
-        jTextArea1.setEditable(false);
-        jScrollPane1.setViewportView(jTextArea1);
+
+        jTextArea.setEditable(false);
+        jScrollPane1.setViewportView(jTextArea);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jButton1.setText("Menu");
@@ -69,6 +70,6 @@ public class ResultsScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea;
     // End of variables declaration//GEN-END:variables
 }

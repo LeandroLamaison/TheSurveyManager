@@ -21,13 +21,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jScrollPane1" alignment="1" min="-2" pref="799" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="RemoveButton" min="-2" pref="352" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       <Component id="MenuButton" min="-2" pref="396" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="799" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
@@ -67,7 +67,7 @@
             <Property name="rows" type="int" value="5"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="TheSurveyManager.answers.forEach(answer -&gt; {&#xa;    HistoryTextArea.append(&quot;Resposta &quot; + (answer.getId() + 1) + &quot;\n\n&quot;);&#xa;    for(int i = 0; i &lt;= answer.getQuestions().size() - 1; i++) {&#xa;        HistoryTextArea.append((answer.getQuestions().get(i).getId() + 1) + &quot; - &quot; + answer.getQuestions().get(i).getMessage() + &quot;\n&quot;);&#xa;        HistoryTextArea.append( answer.getAnswers().get(i).getMessage() + &quot;\n\n&quot;);&#xa;    }&#xa;    HistoryTextArea.append(&quot;---------------------- \n&quot;);&#xa;});&#xa;&#xa;HistoryTextArea.setEditable(false);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="TheSurveyManager.answers.forEach(answer -&gt; {&#xa;    HistoryTextArea.append(&quot;Resposta &quot; + (answer.getId()) + &quot;\n\n&quot;);&#xa;    for(int i = 0; i &lt;= answer.getQuestions().size() - 1; i++) {&#xa;        HistoryTextArea.append((answer.getQuestions().get(i).getId()) + &quot; - &quot; + answer.getQuestions().get(i).getMessage() + &quot;\n&quot;);&#xa;        HistoryTextArea.append( answer.getAnswers().get(i).getMessage() + &quot;\n\n&quot;);&#xa;    }&#xa;    HistoryTextArea.append(&quot;---------------------- \n&quot;);&#xa;});&#xa;&#xa;HistoryTextArea.setEditable(false);"/>
           </AuxValues>
         </Component>
       </SubComponents>

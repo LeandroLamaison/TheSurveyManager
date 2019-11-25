@@ -1,6 +1,5 @@
 package thesurveymanager.screens;
 
-
 import thesurveymanager.UserInterface;
 
 public class AdmScreen extends javax.swing.JFrame {

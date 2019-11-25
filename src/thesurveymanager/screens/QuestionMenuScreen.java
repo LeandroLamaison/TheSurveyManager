@@ -25,7 +25,7 @@ public class QuestionMenuScreen extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
         jTextArea1.setRows(5);
         TheSurveyManager.questions.forEach(q -> {
-            jTextArea1.append("      Questão " + (q.getId() + 1) + "\n");
+            jTextArea1.append("      Questão " + (q.getId()) + "\n");
             jTextArea1.append(q.getMessage() + "\n");
             q.getAlternatives().forEach(alt -> {
                 jTextArea1.append(alt.getMessage() + "\n");

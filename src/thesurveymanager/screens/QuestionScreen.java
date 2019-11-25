@@ -2,7 +2,6 @@ package thesurveymanager.screens;
 
 import thesurveymanager.Answer;
 import thesurveymanager.Question;
-import thesurveymanager.TheSurveyManager;
 import thesurveymanager.UserInterface;
 
 public class QuestionScreen extends javax.swing.JFrame {
@@ -16,6 +15,10 @@ public class QuestionScreen extends javax.swing.JFrame {
     
     public Answer getAnswer() {
         return answer;
+    }
+    
+    public String getSelected() {
+        return selected;
     }
     
     public QuestionScreen(Question question, Answer answer) {
@@ -68,9 +71,9 @@ public class QuestionScreen extends javax.swing.JFrame {
             }
         });
 
-        ErrorTextField.setBackground(new java.awt.Color(204, 204, 255));
+        ErrorTextField.setBackground(getBackground());
         ErrorTextField.setForeground(new java.awt.Color(255, 0, 0));
-        ErrorTextField.setVisible(false);
+        ErrorTextField.setBorder(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,12 +89,11 @@ public class QuestionScreen extends javax.swing.JFrame {
                             .addComponent(Alt2TextPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                             .addComponent(Alt3TextPane, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                             .addComponent(Alt5TextPane, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
-                            .addComponent(Alt4TextPane, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
+                            .addComponent(Alt4TextPane, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                            .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(NextButton, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                            .addComponent(ErrorTextField))
+                        .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(202, 202, 202))))
         );
         layout.setVerticalGroup(
@@ -109,9 +111,9 @@ public class QuestionScreen extends javax.swing.JFrame {
                 .addComponent(Alt4TextPane, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Alt5TextPane, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -127,7 +129,6 @@ public class QuestionScreen extends javax.swing.JFrame {
            Alt5TextPane.isSelected() == false
         ) {
             ErrorTextField.setText("Seleciona alguma das alternativas para prosseguir");
-            ErrorTextField.setVisible(true);
         }
         else {
         
@@ -149,7 +150,7 @@ public class QuestionScreen extends javax.swing.JFrame {
             
             this.setVisible(false);
             this.answer.add(question, selected);
-            TheSurveyManager.user_interface.nextQuestion();
+            UserInterface.nextQuestion();
         }
     }//GEN-LAST:event_NextButtonActionPerformed
 

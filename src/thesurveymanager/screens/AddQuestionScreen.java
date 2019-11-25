@@ -1,6 +1,5 @@
 package thesurveymanager.screens;
 
-import thesurveymanager.TheSurveyManager;
 import thesurveymanager.UserInterface;
 
 public class AddQuestionScreen extends javax.swing.JFrame {

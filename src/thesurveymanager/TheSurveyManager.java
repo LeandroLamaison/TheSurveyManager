@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class TheSurveyManager {
     public static ArrayList<Question> questions;
     public static ArrayList<Answer> answers;
-    public static UserInterface user_interface = new UserInterface();
             
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         File questions_file = new File("data/questions");
@@ -44,10 +43,6 @@ public class TheSurveyManager {
        UserInterface.initialScreen();  
     }
     
-    public static void saveAnswer(Answer answer) {
-        answers.add(answer);
-        answers.get(answers.indexOf(answer)).setId(answers.indexOf(answer));
-    }
     
     public static void addQuestion(String message, String a, String b, String c, String d, String e) {
         Question question = new Question(message);
@@ -57,16 +52,47 @@ public class TheSurveyManager {
         question.addAlternative('d', d);
         question.addAlternative('e', e);
         
+        
+        if(questions.size() <= 0) {
+            question.setId(1);
+        } 
+        else {
+            question.setId(questions.get(questions.size() - 1).getId() + 1);
+        }
+        
         questions.add(question);
-        questions.get(questions.indexOf(question)).setId(questions.indexOf(question));
+    }
+    
+    public static void removeQuestion(int id) {
+        for( int i = 0; i < questions.size(); i++) {
+            if(questions.get(i).getId() == id) {
+                questions.remove(i);
+                break;
+            }
+        }
     }
     
     public static void changeAlternative(int question_id, char alt_id, String new_alt) {
-        questions.get(question_id).getAlternative(alt_id).setMessage(new_alt);
+        questions.forEach(q -> {
+            if(q.getId() == question_id) {
+                q.getAlternative(alt_id).setMessage(new_alt);
+            }
+        });
+    }
+    
+    public static void saveAnswer(Answer answer) {
+        if(answers.size() <= 0) {
+            answer.setId(1);
+        } 
+        else {
+            answer.setId(answers.get(answers.size() - 1).getId() + 1);
+        }
+        
+        answers.add(answer);
     }
     
     public static void removeAnswer(int id) {
-        for( int i = 0; i < answers.size() - 1; i++) {
+        for( int i = 0; i < answers.size(); i++) {
             if(answers.get(i).getId() == id) {
                 answers.remove(i);
                 break;

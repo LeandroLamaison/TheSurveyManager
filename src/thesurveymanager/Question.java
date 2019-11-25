@@ -3,9 +3,7 @@ package thesurveymanager;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Question implements Serializable{
-    private static int id_count = 0;
-    
+public class Question implements Serializable{    
     private int id;
     private String message;
     private ArrayList<Alternative> alternatives;

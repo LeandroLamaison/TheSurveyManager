@@ -25,9 +25,9 @@ public class HistoryScreen extends javax.swing.JFrame {
         HistoryTextArea.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
         HistoryTextArea.setRows(5);
         TheSurveyManager.answers.forEach(answer -> {
-            HistoryTextArea.append("Resposta " + (answer.getId() + 1) + "\n\n");
+            HistoryTextArea.append("Resposta " + (answer.getId()) + "\n\n");
             for(int i = 0; i <= answer.getQuestions().size() - 1; i++) {
-                HistoryTextArea.append((answer.getQuestions().get(i).getId() + 1) + " - " + answer.getQuestions().get(i).getMessage() + "\n");
+                HistoryTextArea.append((answer.getQuestions().get(i).getId()) + " - " + answer.getQuestions().get(i).getMessage() + "\n");
                 HistoryTextArea.append( answer.getAnswers().get(i).getMessage() + "\n\n");
             }
             HistoryTextArea.append("---------------------- \n");
@@ -55,12 +55,12 @@ public class HistoryScreen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(RemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

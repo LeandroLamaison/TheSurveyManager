@@ -1,12 +1,12 @@
 package thesurveymanager.screens;
 
-import thesurveymanager.TheSurveyManager;
 import thesurveymanager.UserInterface;
 
 public class ChangeAlternativeScreen extends javax.swing.JFrame {
     public int question_id;
     public char alt_id;
     public String new_alternative;
+    private boolean isValid;
     
     public ChangeAlternativeScreen() {
         UserInterface.closeOperation(this);
@@ -61,8 +61,9 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
             }
         });
 
+        ErrorTextField.setBackground(getBackground());
         ErrorTextField.setForeground(new java.awt.Color(255, 0, 0));
-        ErrorTextField.setVisible(false);
+        ErrorTextField.setBorder(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,11 +96,10 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
                         .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,9 +118,9 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
                 .addComponent(NewAlternativeLabelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NewAlternativeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -130,34 +130,48 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
-       this.setVisible(false);
+        isValid = true;
        
         try {
             question_id = Integer.parseInt(QuestionIdTextField.getText());
         } catch (Exception e) {
             System.out.println(e);
             ErrorTextField.setText("Insira um id de questão válido");
-            ErrorTextField.setVisible(true);
+            isValid = false;
         }
         
         if(question_id <= 0) {
             ErrorTextField.setText("Insira um id de questão válido");
-            ErrorTextField.setVisible(true);
+            isValid = false;
         }
         
-        question_id--;
-           
-        
-        alt_id = AlternativeIdTextField.getText().charAt(0);
+        if(AlternativeIdTextField.getText().isEmpty()) {
+            ErrorTextField.setText("Insira um id de alternativa válido");
+            isValid = false;
+        }
+        else {
+             alt_id = AlternativeIdTextField.getText().charAt(0);
+        }
+       
         
         if(alt_id != 'a' && alt_id != 'b' && alt_id != 'c' && alt_id != 'd' && alt_id != 'e') {
             ErrorTextField.setText("Insira um id de alternativa válido");
-            ErrorTextField.setVisible(true);
+            isValid = false;
         }
         
-        new_alternative = NewAlternativeTextField.getText();
+        if(NewAlternativeTextField.getText().isEmpty()) {
+            ErrorTextField.setText("Insira um valor para a alternativa");
+            isValid = false;
+        }
+        else {
+             new_alternative = NewAlternativeTextField.getText();
+        }
         
-        UserInterface.confirmChangeAlternative();
+       
+        if(isValid) {
+            this.setVisible(false);
+            UserInterface.confirmChangeAlternative();
+        }
     }//GEN-LAST:event_ConfirmButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
