@@ -1,16 +1,19 @@
 package thesurveymanager;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import thesurveymanager.screens.*;
 
 public class UserInterface {
-    private static final InitialScreen INITIAL_SCREEN = new InitialScreen();
-    private static final AdmScreen ADM_SCREEN = new AdmScreen();
-    
+    private static InitialScreen initial_screen;
+    private static AdmScreen adm_screen;
     private static QuestionScreen question_screen;
     private static ResultsScreen results_screen;
     private static QuestionMenuScreen question_menu_screen;
@@ -20,18 +23,70 @@ public class UserInterface {
     private static ChangeAlternativeScreen change_alternative_screen;
     private static RemoveAnswerScreen remove_answer_screen;
     
+    public static void init() {
+        initialScreen();
+        
+        ActionListener garbage_truck = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Garbage truck is working");
+                if(initial_screen != null && !initial_screen.isVisible()) {
+                   initial_screen = null;
+                }
+                if(adm_screen != null && !adm_screen.isVisible()) {
+                    adm_screen = null;
+                }
+                if(question_screen != null && !question_screen.isVisible()) {
+                    question_screen = null;
+                }
+                if(results_screen != null && !results_screen.isVisible()) {
+                    results_screen = null;
+                }
+                if(question_menu_screen != null && !question_menu_screen.isVisible()) {
+                    question_menu_screen = null;
+                }
+                if(history_screen != null && !history_screen.isVisible()) {
+                    history_screen = null;
+                }
+                if(add_question_screen != null && !add_question_screen.isVisible()) {
+                    add_question_screen = null;
+                }
+                if(remove_question_screen != null && !remove_question_screen.isVisible()) {
+                    remove_question_screen = null;
+                }
+                if(change_alternative_screen != null && !change_alternative_screen.isVisible()) {
+                    change_alternative_screen = null;
+                }
+                if(remove_answer_screen != null && !remove_answer_screen.isVisible()) {
+                    remove_answer_screen = null;
+                }
+                System.gc();
+            }
+        };
+        
+        Timer t = new Timer(30000,garbage_truck); 
+        t.start();
+    }
     public static void initialScreen() {
-        INITIAL_SCREEN.setVisible(true);
+        if(initial_screen == null) {
+            initial_screen = new InitialScreen();
+        }
+        
+        initial_screen.setVisible(true);
     }
     
     public static void admScreen() {
-        ADM_SCREEN.setVisible(true);
+        if(adm_screen == null) {
+            adm_screen = new AdmScreen();
+        }
+        
+        adm_screen.setVisible(true);
     }
     
     public static void beginSurvey() {
         if(TheSurveyManager.questions.size() <= 0) {
             System.out.println("There's no questions registered");
-            INITIAL_SCREEN.setVisible(true);
+            initialScreen();
         }
         else {
             question_screen = new QuestionScreen(TheSurveyManager.questions.get(0), new Answer());
@@ -48,7 +103,7 @@ public class UserInterface {
         
         if(TheSurveyManager.questions.indexOf(question_screen.getQuestion()) == TheSurveyManager.questions.size() - 1) {
             TheSurveyManager.saveAnswer(question_screen.getAnswer());
-            INITIAL_SCREEN.setVisible(true);
+            initialScreen();
         }
         else {
             question_screen = new QuestionScreen(TheSurveyManager.questions.get(TheSurveyManager.questions.indexOf(question_screen.getQuestion()) + 1),question_screen.getAnswer());
@@ -57,22 +112,34 @@ public class UserInterface {
     }
     
     public static void resultsScreen() {
-        results_screen = new ResultsScreen();
+        if(results_screen == null) {
+            results_screen = new ResultsScreen();
+        }
+        
         results_screen.setVisible(true);
     }
     
     public static void questionMenuScreen() {
-        question_menu_screen = new QuestionMenuScreen();
+        if(question_menu_screen == null) {
+            question_menu_screen = new QuestionMenuScreen();
+        }
+        
         question_menu_screen.setVisible(true);
     }
     
     public static void history() {
-        history_screen = new HistoryScreen();
+        if(history_screen == null) {
+            history_screen = new HistoryScreen();
+        }
+        
         history_screen.setVisible(true);
     }
     
     public static void addQuestionScreen() {
-        add_question_screen = new AddQuestionScreen();
+        if(add_question_screen == null) {
+            add_question_screen = new AddQuestionScreen();
+        }
+        
         add_question_screen.setVisible(true);
     }
     public static void confirmAddQuestion() {
@@ -81,7 +148,10 @@ public class UserInterface {
     }
     
     public static void removeQuestionScreen() {
-        remove_question_screen = new RemoveQuestionScreen();
+        if(remove_question_screen == null) {
+            remove_question_screen = new RemoveQuestionScreen();
+        }
+        
         remove_question_screen.setVisible(true);
     }
     public static void confirmRemoveQuestion() {
@@ -91,16 +161,23 @@ public class UserInterface {
     
     
     public static void changeAlternativeScreen() {
-        change_alternative_screen = new ChangeAlternativeScreen();
+        if(change_alternative_screen == null) {
+            change_alternative_screen = new ChangeAlternativeScreen();
+        }
+        
         change_alternative_screen.setVisible(true);
     }
+    
     public static void confirmChangeAlternative() {
         TheSurveyManager.changeAlternative(change_alternative_screen.question_id, change_alternative_screen.alt_id, change_alternative_screen.new_alternative);
         questionMenuScreen();
     }
     
     public static void removeAnswerScreen() {
-        remove_answer_screen = new RemoveAnswerScreen();
+        if(remove_answer_screen == null) {
+            remove_answer_screen = new RemoveAnswerScreen();
+        }
+        
         remove_answer_screen.setVisible(true);
     }
     public static void confirmRemoveAnswer() {
@@ -128,5 +205,10 @@ public class UserInterface {
             }
         };
         frame.addWindowListener(exitListener);
+    }
+    
+    public static void garbageCollect(Object object) {
+        object = null;
+        System.gc();
     }
 }

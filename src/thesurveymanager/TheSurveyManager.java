@@ -38,7 +38,7 @@ public class TheSurveyManager {
             answers = new ArrayList<>();
         }
         
-       UserInterface.initialScreen();  
+       UserInterface.init();  
     }
     
     public static void addQuestion(String message, String a, String b, String c, String d, String e) {

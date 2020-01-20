@@ -114,6 +114,7 @@ public class RemoveAnswerScreen extends javax.swing.JFrame {
     if(isValid) {
         this.setVisible(false);
         UserInterface.confirmRemoveAnswer();
+        
     }
     }//GEN-LAST:event_ConfirmButtonActionPerformed
 

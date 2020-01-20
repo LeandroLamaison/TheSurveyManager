@@ -113,7 +113,7 @@ public class AddQuestionScreen extends javax.swing.JFrame {
         d = AltDTextField.getText();
         e = AltETextField.getText();
         
-        UserInterface.confirmAddQuestion();       
+        UserInterface.confirmAddQuestion();
     }//GEN-LAST:event_AddQuestionButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
