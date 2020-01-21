@@ -24,7 +24,7 @@ public class HistoryScreen extends javax.swing.JFrame {
         HistoryTextArea.setColumns(20);
         HistoryTextArea.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
         HistoryTextArea.setRows(5);
-        TheSurveyManager.answers.forEach(answer -> {
+        TheSurveyManager.selected_survey.answers.forEach(answer -> {
             HistoryTextArea.append("Resposta " + (answer.getId()) + "\n\n");
             for(int i = 0; i <= answer.getQuestions().size() - 1; i++) {
                 HistoryTextArea.append((answer.getQuestions().get(i).getId()) + " - " + answer.getQuestions().get(i).getMessage() + "\n");

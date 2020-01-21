@@ -55,7 +55,7 @@
             <Property name="rows" type="int" value="5"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="TheSurveyManager.questions.forEach(question -&gt; {&#xa;    jTextArea.append(&quot;     &quot; + question.getMessage() + &quot;\n&quot;);&#xa;    question.getAlternatives().forEach(alt -&gt; {&#xa;        jTextArea.append(alt.getMessage() + &quot; --- &quot; + alt.getCount() + &quot; --- &quot; + alt.getPercentage() + &quot;% \n&quot;);&#xa;    });&#xa;    jTextArea.append(&quot;\n \n&quot;);    &#xa;});&#xa;&#xa;jTextArea.setEditable(false);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="TheSurveyManager.selected_survey.questions.forEach(question -&gt; {&#xa;    jTextArea.append(&quot;     &quot; + question.getMessage() + &quot;\n&quot;);&#xa;    question.getAlternatives().forEach(alt -&gt; {&#xa;        jTextArea.append(alt.getMessage() + &quot; --- &quot; + alt.getCount() + &quot; --- &quot; + alt.getPercentage() + &quot;% \n&quot;);&#xa;    });&#xa;    jTextArea.append(&quot;\n \n&quot;);    &#xa;});&#xa;&#xa;jTextArea.setEditable(false);"/>
           </AuxValues>
         </Component>
       </SubComponents>

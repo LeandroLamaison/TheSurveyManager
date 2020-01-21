@@ -74,7 +74,7 @@
             <Property name="rows" type="int" value="5"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="TheSurveyManager.questions.forEach(q -&gt; {&#xa;    jTextArea1.append(&quot;      Quest&#xe3;o &quot; + (q.getId()) + &quot;\n&quot;);&#xa;    jTextArea1.append(q.getMessage() + &quot;\n&quot;);&#xa;    q.getAlternatives().forEach(alt -&gt; {&#xa;        jTextArea1.append(alt.getMessage() + &quot;\n&quot;);&#xa;    });&#xa;    jTextArea1.append(&quot;\n \n&quot;);&#xa;});&#xa;&#xa;jTextArea1.setEditable(false);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="TheSurveyManager.selected_survey.questions.forEach(q -&gt; {&#xa;    jTextArea1.append(&quot;      Quest&#xe3;o &quot; + (q.getId()) + &quot;\n&quot;);&#xa;    jTextArea1.append(q.getMessage() + &quot;\n&quot;);&#xa;    q.getAlternatives().forEach(alt -&gt; {&#xa;        jTextArea1.append(alt.getMessage() + &quot;\n&quot;);&#xa;    });&#xa;    jTextArea1.append(&quot;\n \n&quot;);&#xa;});&#xa;&#xa;jTextArea1.setEditable(false);"/>
           </AuxValues>
         </Component>
       </SubComponents>

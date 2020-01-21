@@ -67,7 +67,7 @@
             <Property name="rows" type="int" value="5"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="TheSurveyManager.answers.forEach(answer -&gt; {&#xa;    HistoryTextArea.append(&quot;Resposta &quot; + (answer.getId()) + &quot;\n\n&quot;);&#xa;    for(int i = 0; i &lt;= answer.getQuestions().size() - 1; i++) {&#xa;        HistoryTextArea.append((answer.getQuestions().get(i).getId()) + &quot; - &quot; + answer.getQuestions().get(i).getMessage() + &quot;\n&quot;);&#xa;        HistoryTextArea.append( answer.getAnswers().get(i).getMessage() + &quot;\n\n&quot;);&#xa;    }&#xa;    HistoryTextArea.append(&quot;---------------------- \n&quot;);&#xa;});&#xa;&#xa;HistoryTextArea.setEditable(false);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="TheSurveyManager.selected_survey.answers.forEach(answer -&gt; {&#xa;    HistoryTextArea.append(&quot;Resposta &quot; + (answer.getId()) + &quot;\n\n&quot;);&#xa;    for(int i = 0; i &lt;= answer.getQuestions().size() - 1; i++) {&#xa;        HistoryTextArea.append((answer.getQuestions().get(i).getId()) + &quot; - &quot; + answer.getQuestions().get(i).getMessage() + &quot;\n&quot;);&#xa;        HistoryTextArea.append( answer.getAnswers().get(i).getMessage() + &quot;\n\n&quot;);&#xa;    }&#xa;    HistoryTextArea.append(&quot;---------------------- \n&quot;);&#xa;});&#xa;&#xa;HistoryTextArea.setEditable(false);"/>
           </AuxValues>
         </Component>
       </SubComponents>

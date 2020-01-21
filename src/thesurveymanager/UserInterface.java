@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -22,6 +21,7 @@ public class UserInterface {
     private static RemoveQuestionScreen remove_question_screen;
     private static ChangeAlternativeScreen change_alternative_screen;
     private static RemoveAnswerScreen remove_answer_screen;
+    private static AdmPassScreen adm_pass_screen;
     
     public static void init() {
         initialScreen();
@@ -84,29 +84,29 @@ public class UserInterface {
     }
     
     public static void beginSurvey() {
-        if(TheSurveyManager.questions.size() <= 0) {
+        if(TheSurveyManager.selected_survey.questions.size() <= 0) {
             System.out.println("There's no questions registered");
             initialScreen();
         }
         else {
-            question_screen = new QuestionScreen(TheSurveyManager.questions.get(0), new Answer());
+            question_screen = new QuestionScreen(TheSurveyManager.selected_survey.questions.get(0), new Answer());
             question_screen.setVisible(true);
         }
     }
     
     public static void nextQuestion() {
-       TheSurveyManager.questions.forEach(q -> {
+       TheSurveyManager.selected_survey.questions.forEach(q -> {
            if(q.getId() == question_screen.getQuestion().getId()) {
                q.addAnswer(question_screen.getSelected());
            }
        });
         
-        if(TheSurveyManager.questions.indexOf(question_screen.getQuestion()) == TheSurveyManager.questions.size() - 1) {
-            TheSurveyManager.saveAnswer(question_screen.getAnswer());
+        if(TheSurveyManager.selected_survey.questions.indexOf(question_screen.getQuestion()) == TheSurveyManager.selected_survey.questions.size() - 1) {
+            TheSurveyManager.selected_survey.saveAnswer(question_screen.getAnswer());
             initialScreen();
         }
         else {
-            question_screen = new QuestionScreen(TheSurveyManager.questions.get(TheSurveyManager.questions.indexOf(question_screen.getQuestion()) + 1),question_screen.getAnswer());
+            question_screen = new QuestionScreen(TheSurveyManager.selected_survey.questions.get(TheSurveyManager.selected_survey.questions.indexOf(question_screen.getQuestion()) + 1),question_screen.getAnswer());
             question_screen.setVisible(true);
         }
     }
@@ -143,7 +143,7 @@ public class UserInterface {
         add_question_screen.setVisible(true);
     }
     public static void confirmAddQuestion() {
-        TheSurveyManager.addQuestion(add_question_screen.message, add_question_screen.a, add_question_screen.b, add_question_screen.c, add_question_screen.d, add_question_screen.e);
+        TheSurveyManager.selected_survey.addQuestion(add_question_screen.message, add_question_screen.a, add_question_screen.b, add_question_screen.c, add_question_screen.d, add_question_screen.e);
         questionMenuScreen();        
     }
     
@@ -155,7 +155,7 @@ public class UserInterface {
         remove_question_screen.setVisible(true);
     }
     public static void confirmRemoveQuestion() {
-        TheSurveyManager.removeQuestion(remove_question_screen.id);
+        TheSurveyManager.selected_survey.removeQuestion(remove_question_screen.id);
         questionMenuScreen();
     }
     
@@ -169,7 +169,7 @@ public class UserInterface {
     }
     
     public static void confirmChangeAlternative() {
-        TheSurveyManager.changeAlternative(change_alternative_screen.question_id, change_alternative_screen.alt_id, change_alternative_screen.new_alternative);
+        TheSurveyManager.selected_survey.changeAlternative(change_alternative_screen.question_id, change_alternative_screen.alt_id, change_alternative_screen.new_alternative);
         questionMenuScreen();
     }
     
@@ -181,8 +181,16 @@ public class UserInterface {
         remove_answer_screen.setVisible(true);
     }
     public static void confirmRemoveAnswer() {
-        TheSurveyManager.removeAnswer(remove_answer_screen.id);
+        TheSurveyManager.selected_survey.removeAnswer(remove_answer_screen.id);
         history();
+    }
+    
+    public static void admPassScreen() {
+        if(adm_pass_screen == null) {
+            adm_pass_screen = new AdmPassScreen();
+        }
+        
+        adm_pass_screen.setVisible(true);
     }
    
     public static void closeOperation(JFrame frame) {
@@ -205,10 +213,5 @@ public class UserInterface {
             }
         };
         frame.addWindowListener(exitListener);
-    }
-    
-    public static void garbageCollect(Object object) {
-        object = null;
-        System.gc();
     }
 }

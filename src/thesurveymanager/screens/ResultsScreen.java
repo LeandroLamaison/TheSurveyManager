@@ -22,7 +22,7 @@ public class ResultsScreen extends javax.swing.JFrame {
         jTextArea.setColumns(20);
         jTextArea.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         jTextArea.setRows(5);
-        TheSurveyManager.questions.forEach(question -> {
+        TheSurveyManager.selected_survey.questions.forEach(question -> {
             jTextArea.append("     " + question.getMessage() + "\n");
             question.getAlternatives().forEach(alt -> {
                 jTextArea.append(alt.getMessage() + " --- " + alt.getCount() + " --- " + alt.getPercentage() + "% \n");
