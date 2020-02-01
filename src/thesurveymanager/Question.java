@@ -58,7 +58,7 @@ public class Question implements Serializable{
     }
     
     public void addAlternative(char option, String alternative) {
-        alternatives.add(new Alternative(this.id,option,alternative));
+        alternatives.add(new Alternative(this, option, alternative));
     }
     
 }

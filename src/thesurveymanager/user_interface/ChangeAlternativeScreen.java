@@ -1,50 +1,57 @@
-package thesurveymanager.screens;
+package thesurveymanager.user_interface;
 
-import thesurveymanager.UserInterface;
+import javax.swing.JPanel;
 
-public class ChangeAlternativeScreen extends javax.swing.JFrame {
+public class ChangeAlternativeScreen extends JPanel{
+    private UserInterface frame;
+    
     public int question_id;
     public char alt_id;
-    public String new_alternative;
+    public String new_alt;
+    
     private boolean isValid;
     
-    public ChangeAlternativeScreen() {
-        UserInterface.closeOperation(this);
+    private javax.swing.JTextField AlternativeIdLabelTextField;
+    private javax.swing.JTextField AlternativeIdTextField;
+    private javax.swing.JButton CancelButton;
+    private javax.swing.JButton ConfirmButton;
+    private javax.swing.JTextField ErrorTextField;
+    private javax.swing.JTextField NewAlternativeLabelTextField;
+    private javax.swing.JTextField NewAlternativeTextField;
+    private javax.swing.JTextField QuestionIdLabelTextField;
+    private javax.swing.JTextField QuestionIdTextField;
+    
+    public ChangeAlternativeScreen(UserInterface frame) {
+        this.frame = frame;
         initComponents();
     }
-
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    
     private void initComponents() {
-
         QuestionIdLabelTextField = new javax.swing.JTextField();
-        QuestionIdTextField = new javax.swing.JTextField();
-        AlternativeIdLabelTextField = new javax.swing.JTextField();
-        AlternativeIdTextField = new javax.swing.JTextField();
-        NewAlternativeLabelTextField = new javax.swing.JTextField();
-        NewAlternativeTextField = new javax.swing.JTextField();
-        ConfirmButton = new javax.swing.JButton();
-        CancelButton = new javax.swing.JButton();
-        ErrorTextField = new javax.swing.JTextField();
-
         QuestionIdLabelTextField.setBackground(new java.awt.Color(204, 204, 204));
         QuestionIdLabelTextField.setText("Id da questão:");
         QuestionIdLabelTextField.setEditable(false);
-
-        QuestionIdTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
+        
+        QuestionIdTextField = new javax.swing.JTextField();
+        QuestionIdTextField.setFont(new java.awt.Font("Tahoma", 0, 14));
+        
+        AlternativeIdLabelTextField = new javax.swing.JTextField();
         AlternativeIdLabelTextField.setBackground(new java.awt.Color(204, 204, 204));
         AlternativeIdLabelTextField.setText("Id da alternativa");
         AlternativeIdLabelTextField.setEditable(false);
-
-        AlternativeIdTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
+        
+        AlternativeIdTextField = new javax.swing.JTextField();
+        AlternativeIdTextField.setFont(new java.awt.Font("Tahoma", 0, 14));
+        
+        NewAlternativeLabelTextField = new javax.swing.JTextField();
         NewAlternativeLabelTextField.setBackground(new java.awt.Color(204, 204, 204));
         NewAlternativeLabelTextField.setText("Nova alternativa");
         NewAlternativeLabelTextField.setEditable(false);
-
-        NewAlternativeTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
+        
+        NewAlternativeTextField = new javax.swing.JTextField();
+        NewAlternativeTextField.setFont(new java.awt.Font("Tahoma", 0, 14));
+        
+        ConfirmButton = new javax.swing.JButton();
         ConfirmButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         ConfirmButton.setText("CONFIRMAR");
         ConfirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +59,8 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
                 ConfirmButtonActionPerformed(evt);
             }
         });
-
+        
+        CancelButton = new javax.swing.JButton();
         CancelButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         CancelButton.setText("CANCELAR");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,13 +68,14 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
                 CancelButtonActionPerformed(evt);
             }
         });
-
+        
+        ErrorTextField = new javax.swing.JTextField();
         ErrorTextField.setBackground(getBackground());
         ErrorTextField.setForeground(new java.awt.Color(255, 0, 0));
         ErrorTextField.setBorder(null);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -125,11 +134,9 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
                     .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
+    }
+    
+    private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         isValid = true;
        
         try {
@@ -152,7 +159,6 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
         else {
              alt_id = AlternativeIdTextField.getText().charAt(0);
         }
-       
         
         if(alt_id != 'a' && alt_id != 'b' && alt_id != 'c' && alt_id != 'd' && alt_id != 'e') {
             ErrorTextField.setText("Insira um id de alternativa válido");
@@ -164,30 +170,16 @@ public class ChangeAlternativeScreen extends javax.swing.JFrame {
             isValid = false;
         }
         else {
-             new_alternative = NewAlternativeTextField.getText();
+             new_alt = NewAlternativeTextField.getText();
         }
-        
        
         if(isValid) {
-            this.setVisible(false);
-            UserInterface.confirmChangeAlternative();
+            frame.changeAlternativeOperation();
+            frame.showQuestionMenuScreen();
         }
-    }//GEN-LAST:event_ConfirmButtonActionPerformed
+    }                                             
 
-    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-       this.setVisible(false);
-       UserInterface.questionMenuScreen();
-    }//GEN-LAST:event_CancelButtonActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AlternativeIdLabelTextField;
-    private javax.swing.JTextField AlternativeIdTextField;
-    private javax.swing.JButton CancelButton;
-    private javax.swing.JButton ConfirmButton;
-    private javax.swing.JTextField ErrorTextField;
-    private javax.swing.JTextField NewAlternativeLabelTextField;
-    private javax.swing.JTextField NewAlternativeTextField;
-    private javax.swing.JTextField QuestionIdLabelTextField;
-    private javax.swing.JTextField QuestionIdTextField;
-    // End of variables declaration//GEN-END:variables
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+       frame.showQuestionMenuScreen();
+    }
 }

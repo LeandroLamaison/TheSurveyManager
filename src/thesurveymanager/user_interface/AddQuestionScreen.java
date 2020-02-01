@@ -1,8 +1,11 @@
-package thesurveymanager.screens;
+package thesurveymanager.user_interface;
 
-import thesurveymanager.UserInterface;
+import javax.swing.JPanel;
 
-public class AddQuestionScreen extends javax.swing.JFrame {
+
+public class AddQuestionScreen extends JPanel{
+    private UserInterface frame;
+    
     public String message;
     public String a;
     public String b;
@@ -10,27 +13,42 @@ public class AddQuestionScreen extends javax.swing.JFrame {
     public String d;
     public String e;
     
-    public AddQuestionScreen() {
-        UserInterface.closeOperation(this);
+    private javax.swing.JButton AddQuestionButton;
+    private javax.swing.JTextField AltATextField;
+    private javax.swing.JTextField AltBTextField;
+    private javax.swing.JTextField AltCTextField;
+    private javax.swing.JTextField AltDTextField;
+    private javax.swing.JTextField AltETextField;
+    private javax.swing.JButton CancelButton;
+    private javax.swing.JTextField MessageTextField;
+    
+    public AddQuestionScreen(UserInterface frame) {
+        this.frame = frame;
         initComponents();
     }
     
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        
         MessageTextField = new javax.swing.JTextField();
-        CancelButton = new javax.swing.JButton();
-        AddQuestionButton = new javax.swing.JButton();
-        AltATextField = new javax.swing.JTextField();
-        AltBTextField = new javax.swing.JTextField();
-        AltCTextField = new javax.swing.JTextField();
-        AltDTextField = new javax.swing.JTextField();
-        AltETextField = new javax.swing.JTextField();
-
-        MessageTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        MessageTextField.setFont(new java.awt.Font("Tahoma", 0, 18));
         MessageTextField.setText("Mensagem");
+        
+        AltATextField = new javax.swing.JTextField();
+        AltATextField.setText("Alternativa A");
 
+        AltBTextField = new javax.swing.JTextField();
+        AltBTextField.setText("Alternativa B");
+
+        AltCTextField = new javax.swing.JTextField();
+        AltCTextField.setText("Alternativa C");
+
+        AltDTextField = new javax.swing.JTextField();
+        AltDTextField.setText("Alternativa D");
+
+        AltETextField = new javax.swing.JTextField();
+        AltETextField.setText("Alternativa E");
+        
+        CancelButton = new javax.swing.JButton();
         CancelButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         CancelButton.setText("Cancelar");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -38,7 +56,8 @@ public class AddQuestionScreen extends javax.swing.JFrame {
                 CancelButtonActionPerformed(evt);
             }
         });
-
+        
+        AddQuestionButton = new javax.swing.JButton();
         AddQuestionButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         AddQuestionButton.setText("Cadastrar");
         AddQuestionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -46,19 +65,9 @@ public class AddQuestionScreen extends javax.swing.JFrame {
                 AddQuestionButtonActionPerformed(evt);
             }
         });
-
-        AltATextField.setText("Alternativa A");
-
-        AltBTextField.setText("Alternativa B");
-
-        AltCTextField.setText("Alternativa C");
-
-        AltDTextField.setText("Alternativa D");
-
-        AltETextField.setText("Alternativa E");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -99,13 +108,9 @@ public class AddQuestionScreen extends javax.swing.JFrame {
                     .addComponent(AddQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void AddQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddQuestionButtonActionPerformed
-        this.setVisible(false);
-        
+    }
+    
+    private void AddQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         message = MessageTextField.getText();
         a = AltATextField.getText();
         b = AltBTextField.getText();
@@ -113,22 +118,11 @@ public class AddQuestionScreen extends javax.swing.JFrame {
         d = AltDTextField.getText();
         e = AltETextField.getText();
         
-        UserInterface.confirmAddQuestion();
-    }//GEN-LAST:event_AddQuestionButtonActionPerformed
+        frame.addQuestionOperation();
+        frame.showQuestionMenuScreen();
+    }                                                 
 
-    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-       this.setVisible(false);
-       UserInterface.questionMenuScreen();
-    }//GEN-LAST:event_CancelButtonActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddQuestionButton;
-    private javax.swing.JTextField AltATextField;
-    private javax.swing.JTextField AltBTextField;
-    private javax.swing.JTextField AltCTextField;
-    private javax.swing.JTextField AltDTextField;
-    private javax.swing.JTextField AltETextField;
-    private javax.swing.JButton CancelButton;
-    private javax.swing.JTextField MessageTextField;
-    // End of variables declaration//GEN-END:variables
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        frame.showQuestionMenuScreen();
+    }
 }

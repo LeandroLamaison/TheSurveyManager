@@ -9,7 +9,7 @@ public class Answer implements Serializable{
     private final ArrayList<Alternative> answers;
     boolean hasAlternative;
     
-    Answer() {
+    public Answer() {
         this.questions = new ArrayList<>();
         this.answers = new ArrayList<>();
     }

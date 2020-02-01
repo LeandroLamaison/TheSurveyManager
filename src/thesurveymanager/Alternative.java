@@ -3,20 +3,20 @@ package thesurveymanager;
 import java.io.Serializable;
 
 public class Alternative implements Serializable{
-    private final int QUESTION_ID;
+    private final Question question;
     private final char ID;
     private String message;
     private int count;
     
-    Alternative(int QUESTION_ID, char ID, String message) {
-        this.QUESTION_ID = QUESTION_ID;
+    Alternative(Question question, char ID, String message) {
+        this.question = question;
         this.ID = ID;
         this.message = ID + ") " + message; 
         this.count = 0;
     }
     
-    public int getQuestion() {
-        return QUESTION_ID;
+    public Question getQuestion() {
+        return question;
     }
 
     public String getMessage() {
@@ -40,7 +40,7 @@ public class Alternative implements Serializable{
             return 0;
         }
         else {
-            return ( count * 100) / TheSurveyManager.selected_survey.questions.get(QUESTION_ID).getAnswerCount();
+            return ( count * 100) / question.getAnswerCount();
         }
     }
     

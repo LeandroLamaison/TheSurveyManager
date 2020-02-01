@@ -1,14 +1,36 @@
-package thesurveymanager.screens;
+package thesurveymanager.user_interface;
 
+import javax.swing.JPanel;
 import thesurveymanager.Answer;
 import thesurveymanager.Question;
-import thesurveymanager.UserInterface;
 
-public class QuestionScreen extends javax.swing.JFrame {
+public class QuestionScreen extends JPanel{
+    private final UserInterface frame;
+    
     private final Question question;
     private final Answer answer;
     private String selected;
     
+    private javax.swing.JRadioButton Alt1TextPane;
+    private javax.swing.JRadioButton Alt2TextPane;
+    private javax.swing.JRadioButton Alt3TextPane;
+    private javax.swing.JRadioButton Alt4TextPane;
+    private javax.swing.JRadioButton Alt5TextPane;
+    private javax.swing.JTextField ErrorTextField;
+    private javax.swing.JButton NextButton;
+    private javax.swing.JTextPane QuestionTextPanel;
+    private javax.swing.ButtonGroup buttonGroup;
+    private javax.swing.JScrollPane jScrollPane;
+    
+    public QuestionScreen(UserInterface frame, Question question, Answer answer) {
+        this.question = question;
+        this.answer = answer;
+        this.frame = frame;
+        
+        initComponents();
+    }
+    
+//Getters and Setters ------------------------------------------------------------
     public Question getQuestion() {
         return question;
     }
@@ -20,49 +42,34 @@ public class QuestionScreen extends javax.swing.JFrame {
     public String getSelected() {
         return selected;
     }
-    
-    public QuestionScreen(Question question, Answer answer) {
-        this.question = question;
-        this.answer = answer;
-        UserInterface.closeOperation(this);
-        initComponents();
-    }
-    
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+//------------------------------------------------------------------------------
     private void initComponents() {
-
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jScrollPane1 = new javax.swing.JScrollPane();
         QuestionTextPanel = new javax.swing.JTextPane();
-        Alt1TextPane = new javax.swing.JRadioButton();
-        Alt2TextPane = new javax.swing.JRadioButton();
-        Alt3TextPane = new javax.swing.JRadioButton();
-        Alt5TextPane = new javax.swing.JRadioButton();
-        Alt4TextPane = new javax.swing.JRadioButton();
-        NextButton = new javax.swing.JButton();
-        ErrorTextField = new javax.swing.JTextField();
-
         QuestionTextPanel.setText(this.question.getMessage());
         QuestionTextPanel.setEditable(false);
-        QuestionTextPanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jScrollPane1.setViewportView(QuestionTextPanel);
+        QuestionTextPanel.setFont(new java.awt.Font("Tahoma", 0, 18));
+        jScrollPane = new javax.swing.JScrollPane();
+        jScrollPane.setViewportView(QuestionTextPanel);
 
+        Alt1TextPane = new javax.swing.JRadioButton();
         Alt1TextPane.setText(this.question.getAlternatives().get(0).getMessage());
-        buttonGroup1.add(Alt1TextPane);
-
+        Alt2TextPane = new javax.swing.JRadioButton();
         Alt2TextPane.setText(this.question.getAlternatives().get(1).getMessage());
-        buttonGroup1.add(Alt2TextPane);
-
+        Alt3TextPane = new javax.swing.JRadioButton();
         Alt3TextPane.setText(this.question.getAlternatives().get(2).getMessage());
-        buttonGroup1.add(Alt3TextPane);
-
-        Alt5TextPane.setText(this.question.getAlternatives().get(4).getMessage());
-        buttonGroup1.add(Alt5TextPane);
-
+        Alt4TextPane = new javax.swing.JRadioButton();
         Alt4TextPane.setText(this.question.getAlternatives().get(3).getMessage());
-        buttonGroup1.add(Alt4TextPane);
-
+        Alt5TextPane = new javax.swing.JRadioButton();
+        Alt5TextPane.setText(this.question.getAlternatives().get(4).getMessage());
+        
+        buttonGroup = new javax.swing.ButtonGroup();
+        buttonGroup.add(Alt1TextPane);
+        buttonGroup.add(Alt2TextPane);
+        buttonGroup.add(Alt3TextPane);
+        buttonGroup.add(Alt4TextPane);
+        buttonGroup.add(Alt5TextPane);
+        
+        NextButton = new javax.swing.JButton();
         NextButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         NextButton.setText("Próxima >>>");
         NextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,13 +77,14 @@ public class QuestionScreen extends javax.swing.JFrame {
                 NextButtonActionPerformed(evt);
             }
         });
-
+        
+        ErrorTextField = new javax.swing.JTextField();
         ErrorTextField.setBackground(getBackground());
         ErrorTextField.setForeground(new java.awt.Color(255, 0, 0));
         ErrorTextField.setBorder(null);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -84,7 +92,7 @@ public class QuestionScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane)
                             .addComponent(Alt1TextPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Alt2TextPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                             .addComponent(Alt3TextPane, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
@@ -100,7 +108,7 @@ public class QuestionScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Alt1TextPane, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -118,10 +126,9 @@ public class QuestionScreen extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+    }
+    
+    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         if(Alt1TextPane.isSelected() == false && 
            Alt2TextPane.isSelected() == false && 
            Alt3TextPane.isSelected() == false && 
@@ -150,20 +157,8 @@ public class QuestionScreen extends javax.swing.JFrame {
             
             this.setVisible(false);
             this.answer.add(question, selected);
-            UserInterface.nextQuestion();
+            frame.showQuestionScreen();
         }
-    }//GEN-LAST:event_NextButtonActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Alt1TextPane;
-    private javax.swing.JRadioButton Alt2TextPane;
-    private javax.swing.JRadioButton Alt3TextPane;
-    private javax.swing.JRadioButton Alt4TextPane;
-    private javax.swing.JRadioButton Alt5TextPane;
-    private javax.swing.JTextField ErrorTextField;
-    private javax.swing.JButton NextButton;
-    private javax.swing.JTextPane QuestionTextPanel;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
+    }      
+    
 }

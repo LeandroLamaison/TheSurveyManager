@@ -1,54 +1,58 @@
-package thesurveymanager.screens;
+package thesurveymanager.user_interface;
 
-import thesurveymanager.UserInterface;
+import javax.swing.JPanel;
 
-public class RemoveQuestionScreen extends javax.swing.JFrame {
+public class RemoveQuestionScreen extends JPanel{
+    private UserInterface frame;
+    
     public int id;
     private boolean isValid;
     
-    public RemoveQuestionScreen() {
-        UserInterface.closeOperation(this);
+    private javax.swing.JButton CancelButton;
+    private javax.swing.JButton ConfirmButton;
+    private javax.swing.JTextField ErrorTextField;
+    private javax.swing.JTextField IdLabelTextField;
+    private javax.swing.JTextField IdTextField;
+    
+    public RemoveQuestionScreen(UserInterface frame) {
+        this.frame = frame;
         initComponents();
     }
-
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    
     private void initComponents() {
-
         IdTextField = new javax.swing.JTextField();
+        IdTextField.setFont(new java.awt.Font("Tahoma", 0, 14));
+        
         IdLabelTextField = new javax.swing.JTextField();
-        CancelButton = new javax.swing.JButton();
-        ConfirmButton = new javax.swing.JButton();
-        ErrorTextField = new javax.swing.JTextField();
-
-        IdTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         IdLabelTextField.setBackground(new java.awt.Color(204, 204, 204));
         IdLabelTextField.setText("ID:");
         IdLabelTextField.setEditable(false);
-
-        CancelButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        
+        CancelButton = new javax.swing.JButton();
+        CancelButton.setFont(new java.awt.Font("Tahoma", 1, 24)); 
         CancelButton.setText("CANCELAR");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelButtonActionPerformed(evt);
             }
         });
-
-        ConfirmButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        
+        ConfirmButton = new javax.swing.JButton();
+        ConfirmButton.setFont(new java.awt.Font("Tahoma", 1, 24)); 
         ConfirmButton.setText("CONFIRMAR");
         ConfirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmButtonActionPerformed(evt);
             }
         });
-
+        
+        ErrorTextField = new javax.swing.JTextField();
         ErrorTextField.setBackground(getBackground());
         ErrorTextField.setForeground(new java.awt.Color(255, 0, 0));
         ErrorTextField.setBorder(null);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -84,11 +88,9 @@ public class RemoveQuestionScreen extends javax.swing.JFrame {
                     .addComponent(ConfirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
+    }
+    
+    private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         isValid = true;
         
         try {
@@ -105,21 +107,12 @@ public class RemoveQuestionScreen extends javax.swing.JFrame {
         }
         
         if(isValid) {
-            this.setVisible(false);
-            UserInterface.confirmRemoveQuestion();
+            frame.removeQuestionOperation();
+            frame.showQuestionMenuScreen();
         }
-    }//GEN-LAST:event_ConfirmButtonActionPerformed
+    }                                             
 
-    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-       this.setVisible(false);
-       UserInterface.questionMenuScreen();
-    }//GEN-LAST:event_CancelButtonActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelButton;
-    private javax.swing.JButton ConfirmButton;
-    private javax.swing.JTextField ErrorTextField;
-    private javax.swing.JTextField IdLabelTextField;
-    private javax.swing.JTextField IdTextField;
-    // End of variables declaration//GEN-END:variables
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+       frame.showQuestionMenuScreen();
+    }
 }

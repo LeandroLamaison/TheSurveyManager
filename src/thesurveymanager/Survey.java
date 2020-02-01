@@ -9,7 +9,7 @@ public class Survey implements Serializable {
     public ArrayList<Answer> answers;
     private String password;
     
-    Survey(int id, String password) {
+    public Survey(int id, String password) {
         this.id = id;
         this.password = password;
         this.questions = new ArrayList<Question>();

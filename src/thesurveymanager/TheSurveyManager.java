@@ -1,5 +1,6 @@
 package thesurveymanager;
 
+import thesurveymanager.user_interface.UserInterface;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,10 +11,17 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class TheSurveyManager {
+    public static UserInterface user_interface;
     public static ArrayList<Survey> surveys;
-    public static Survey selected_survey;
     
-    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
+        loadData();
+        
+        surveys.add(new Survey(0,"abc"));
+        user_interface = new UserInterface(surveys);
+    }
+    
+    private static void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
         File surveys_file = new File("data/surveys");
         
         if(surveys_file.exists()) {
@@ -26,17 +34,10 @@ public class TheSurveyManager {
         else {
            surveys = new ArrayList<>();
         }
-        
-        surveys.add(new Survey(0,"abc"));
-        
-        selected_survey = surveys.get(0);
-       
-        
-       UserInterface.init();  
     }
     
     public static void saveOperation() {
-         try {
+        try {
             FileOutputStream surveysOutputFile = new FileOutputStream("data/surveys");
             ObjectOutputStream questionsOutputObject = new ObjectOutputStream(surveysOutputFile);
             questionsOutputObject.writeObject(surveys);
@@ -47,4 +48,5 @@ public class TheSurveyManager {
             System.out.println(e);
         }
     }
+    
 }

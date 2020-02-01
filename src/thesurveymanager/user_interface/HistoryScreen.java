@@ -1,30 +1,26 @@
-package thesurveymanager.screens;
+package thesurveymanager.user_interface;
 
-import thesurveymanager.TheSurveyManager;
-import thesurveymanager.UserInterface;
+import javax.swing.JPanel;
 
-public class HistoryScreen extends javax.swing.JFrame {
-
-
-    public HistoryScreen() {
-        UserInterface.closeOperation(this);
+public class HistoryScreen extends JPanel {
+    private UserInterface frame;
+    
+    private javax.swing.JTextArea HistoryTextArea;
+    private javax.swing.JButton MenuButton;
+    private javax.swing.JButton RemoveButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    
+    public HistoryScreen(UserInterface frame) {
+        this.frame = frame;
         initComponents();
     }
-
     
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jScrollPane1 = new javax.swing.JScrollPane();
         HistoryTextArea = new javax.swing.JTextArea();
-        RemoveButton = new javax.swing.JButton();
-        MenuButton = new javax.swing.JButton();
-
         HistoryTextArea.setColumns(20);
         HistoryTextArea.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
         HistoryTextArea.setRows(5);
-        TheSurveyManager.selected_survey.answers.forEach(answer -> {
+        frame.getSelectedSurvey().answers.forEach(answer -> {
             HistoryTextArea.append("Resposta " + (answer.getId()) + "\n\n");
             for(int i = 0; i <= answer.getQuestions().size() - 1; i++) {
                 HistoryTextArea.append((answer.getQuestions().get(i).getId()) + " - " + answer.getQuestions().get(i).getMessage() + "\n");
@@ -32,26 +28,29 @@ public class HistoryScreen extends javax.swing.JFrame {
             }
             HistoryTextArea.append("---------------------- \n");
         });
-
         HistoryTextArea.setEditable(false);
+        
+        jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane1.setViewportView(HistoryTextArea);
-
+        
+        RemoveButton = new javax.swing.JButton();
         RemoveButton.setText("Remover");
         RemoveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveButtonActionPerformed(evt);
             }
         });
-
+        
+        MenuButton = new javax.swing.JButton();
         MenuButton.setText("Menu");
         MenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -75,24 +74,13 @@ public class HistoryScreen extends javax.swing.JFrame {
                     .addComponent(MenuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+    }
+    
+    private void RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) { 
+        frame.showRemoveAnswerScreen();
+    }                                            
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveButtonActionPerformed
-       this.setVisible(false);
-       UserInterface.removeAnswerScreen();
-    }//GEN-LAST:event_RemoveButtonActionPerformed
-
-    private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
-       this.setVisible(false);
-       UserInterface.admScreen();
-    }//GEN-LAST:event_MenuButtonActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea HistoryTextArea;
-    private javax.swing.JButton MenuButton;
-    private javax.swing.JButton RemoveButton;
-    private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
+    private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+       frame.showAdmScreen();
+    }   
 }

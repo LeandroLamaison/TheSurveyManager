@@ -1,30 +1,28 @@
-package thesurveymanager.screens;
+package thesurveymanager.user_interface;
 
-import thesurveymanager.TheSurveyManager;
-import thesurveymanager.UserInterface;
+import javax.swing.JPanel;
 
-public class QuestionMenuScreen extends javax.swing.JFrame {
-
-    public QuestionMenuScreen() {
-        UserInterface.closeOperation(this);
+public class QuestionMenuScreen extends JPanel{
+    private UserInterface frame;
+    
+    private javax.swing.JButton AddQuestionButton;
+    private javax.swing.JButton ChangeAlternativeButton;
+    private javax.swing.JButton MenuButton;
+    private javax.swing.JButton RemoveQuestionButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    
+    public QuestionMenuScreen(UserInterface frame) {
+        this.frame = frame;
         initComponents();
     }
-
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    
     private void initComponents() {
-
-        jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        AddQuestionButton = new javax.swing.JButton();
-        RemoveQuestionButton = new javax.swing.JButton();
-        ChangeAlternativeButton = new javax.swing.JButton();
-        MenuButton = new javax.swing.JButton();
-
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
         jTextArea1.setRows(5);
-        TheSurveyManager.selected_survey.questions.forEach(q -> {
+        frame.getSelectedSurvey().questions.forEach(q -> {
             jTextArea1.append("      Questão " + (q.getId()) + "\n");
             jTextArea1.append(q.getMessage() + "\n");
             q.getAlternatives().forEach(alt -> {
@@ -32,40 +30,45 @@ public class QuestionMenuScreen extends javax.swing.JFrame {
             });
             jTextArea1.append("\n \n");
         });
-
         jTextArea1.setEditable(false);
+        
+        jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane1.setViewportView(jTextArea1);
-
+        
+        AddQuestionButton = new javax.swing.JButton();
         AddQuestionButton.setText("Adicionar");
         AddQuestionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddQuestionButtonActionPerformed(evt);
             }
         });
-
+        
+        RemoveQuestionButton = new javax.swing.JButton();
         RemoveQuestionButton.setText("Remover");
         RemoveQuestionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveQuestionButtonActionPerformed(evt);
             }
         });
-
+        
+        ChangeAlternativeButton = new javax.swing.JButton();
         ChangeAlternativeButton.setText("Alterar Alternativa");
         ChangeAlternativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChangeAlternativeButtonActionPerformed(evt);
             }
         });
-
+        
+        MenuButton = new javax.swing.JButton();
         MenuButton.setText("Menu");
         MenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -97,35 +100,21 @@ public class QuestionMenuScreen extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
+    
+    private void AddQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) { 
+        frame.showAddQuestionScreen();
+    }                                                 
 
-    private void AddQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddQuestionButtonActionPerformed
-        this.setVisible(false);
-        UserInterface.addQuestionScreen();
-    }//GEN-LAST:event_AddQuestionButtonActionPerformed
+    private void RemoveQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        frame.showRemoveQuestionScreen();
+    }                                                    
 
-    private void RemoveQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveQuestionButtonActionPerformed
-        this.setVisible(false);
-        UserInterface.removeQuestionScreen();
-    }//GEN-LAST:event_RemoveQuestionButtonActionPerformed
+    private void ChangeAlternativeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        frame.showChangeAlternativeScreen();
+    }                                                       
 
-    private void ChangeAlternativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeAlternativeButtonActionPerformed
-       this.setVisible(false);
-       UserInterface.changeAlternativeScreen();
-    }//GEN-LAST:event_ChangeAlternativeButtonActionPerformed
-
-    private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
-        this.setVisible(false);
-        UserInterface.admScreen();
-    }//GEN-LAST:event_MenuButtonActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddQuestionButton;
-    private javax.swing.JButton ChangeAlternativeButton;
-    private javax.swing.JButton MenuButton;
-    private javax.swing.JButton RemoveQuestionButton;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    // End of variables declaration//GEN-END:variables
+    private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        frame.showAdmScreen();
+    }      
 }
