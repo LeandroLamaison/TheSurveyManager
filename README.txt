@@ -1,4 +1,5 @@
-﻿OBJETIVO: Um software stand-alone para automatizar o processo de aplicação de pesquisas.
+#TheSurveyManager
+##Um software stand-alone para automatizar o processo de aplicação de pesquisas.
 
 FUTUROS UPDATES:
 	* Novas funções que permitem que mais de uma pesquisa seja criada;
