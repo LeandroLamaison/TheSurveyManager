@@ -20,7 +20,7 @@ public class HistoryScreen extends JPanel {
         HistoryTextArea.setColumns(20);
         HistoryTextArea.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
         HistoryTextArea.setRows(5);
-        frame.getSelectedSurvey().answers.forEach(answer -> {
+        frame.getSelectedSurvey().getAnswers().forEach(answer -> {
             HistoryTextArea.append("Resposta " + (answer.getId()) + "\n\n");
             for(int i = 0; i <= answer.getQuestions().size() - 1; i++) {
                 HistoryTextArea.append((answer.getQuestions().get(i).getId()) + " - " + answer.getQuestions().get(i).getMessage() + "\n");

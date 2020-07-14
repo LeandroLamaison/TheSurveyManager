@@ -11,14 +11,15 @@ public class Alternative implements Serializable{
     Alternative(Question question, char ID, String message) {
         this.question = question;
         this.ID = ID;
-        this.message = ID + ") " + message; 
+        this.message = message; 
         this.count = 0;
     }
     
+//Getters ----------------------------------------------------------------------
     public Question getQuestion() {
         return question;
     }
-
+    
     public String getMessage() {
         return message;
     }
@@ -31,10 +32,6 @@ public class Alternative implements Serializable{
         return ID;
     }
     
-    public void increment() {
-        count++;
-    }
-    
     public int getPercentage() {
         if(this.count <= 0) {
             return 0;
@@ -43,9 +40,15 @@ public class Alternative implements Serializable{
             return ( count * 100) / question.getAnswerCount();
         }
     }
+//------------------------------------------------------------------------------
     
-    public void setMessage(String message) {
-        this.message = this.ID + ") " + message;
+//Setters ----------------------------------------------------------------------
+    public void increment() {
+        count++;
     }
     
+    public void setMessage(String message) {
+        this.message =  message;
+    }
+//------------------------------------------------------------------------------
 }

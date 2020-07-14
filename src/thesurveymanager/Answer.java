@@ -14,20 +14,24 @@ public class Answer implements Serializable{
         this.answers = new ArrayList<>();
     }
     
+//Getters ----------------------------------------------------------------------
     public int getId() {
         return id;
-    }
-    
-    public void setId(int id) {
-        this.id = id;
     }
     
     public ArrayList<Question> getQuestions() {
         return questions;
     }
-
+    
     public ArrayList<Alternative> getAnswers() {
         return answers;
+    }
+    
+//------------------------------------------------------------------------------
+    
+//Setters ----------------------------------------------------------------------
+    public void setId(int id) {
+        this.id = id;
     }
     
     public void add(Question question, String alternative) {
@@ -45,4 +49,5 @@ public class Answer implements Serializable{
             throw new Error("Alternative not found in question");
         }
     }
+//------------------------------------------------------------------------------
 }

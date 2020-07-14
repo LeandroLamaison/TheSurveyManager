@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import thesurveymanager.Answer;
+import thesurveymanager.Question;
 import thesurveymanager.Survey;
 import thesurveymanager.TheSurveyManager;
 
@@ -25,6 +26,7 @@ public class UserInterface extends JFrame{
     private ChangeAlternativeScreen change_alternative_screen;
     private HistoryScreen history_screen;
     private RemoveAnswerScreen remove_answer_screen;
+    private EditQuestionScreen edit_question_screen;
     
     
     public UserInterface(ArrayList<Survey> survey_list) {
@@ -82,29 +84,29 @@ public class UserInterface extends JFrame{
     
     public void showQuestionScreen() {
         if(question_screen == null) {
-             if(selected_survey.questions.size() <= 0) {
+             if(selected_survey.getQuestions().size() <= 0) {
                 System.out.println("There's no questions registered");
             }
             else {
-                question_screen = new QuestionScreen(this, selected_survey.questions.get(0), new Answer());
+                question_screen = new QuestionScreen(this, selected_survey.getQuestions().get(0), new Answer());
                 setPanel(question_screen);
             }
         }
         
         else {
-            selected_survey.questions.forEach(q -> {
+            selected_survey.getQuestions().forEach(q -> {
                 if(q.getId() == question_screen.getQuestion().getId()) {
                     q.addAnswer(question_screen.getSelected());
                 }
             });
         
-            if(selected_survey.questions.indexOf(question_screen.getQuestion()) == selected_survey.questions.size() - 1) {
+            if(selected_survey.getQuestions().indexOf(question_screen.getQuestion()) == selected_survey.getQuestions().size() - 1) {
                 selected_survey.saveAnswer(question_screen.getAnswer());
                 showInitialScreen();
                 question_screen = null;
             }
             else {
-                question_screen = new QuestionScreen(this, selected_survey.questions.get(selected_survey.questions.indexOf(question_screen.getQuestion()) + 1),question_screen.getAnswer());
+                question_screen = new QuestionScreen(this, selected_survey.getQuestions().get(selected_survey.getQuestions().indexOf(question_screen.getQuestion()) + 1),question_screen.getAnswer());
                 setPanel(question_screen);
             }
         }
@@ -140,6 +142,16 @@ public class UserInterface extends JFrame{
         setPanel(remove_answer_screen);
     }
     
+    public void showEditQuestionScreen(Question question) {
+        selected_survey.getQuestions().forEach(q -> {
+            if(q == question) {
+                edit_question_screen = new EditQuestionScreen(this, q);
+            }
+        });
+        
+        setPanel(edit_question_screen);
+    }
+    
 //----------------------------------------------------------------------------------------------------
     
 //Operations -----------------------------------------------------------------------------------------
@@ -148,11 +160,16 @@ public class UserInterface extends JFrame{
     }
     
     public void removeQuestionOperation() {
-        selected_survey.removeQuestion(remove_question_screen.id);
+        selected_survey.removeQuestion(Integer.parseInt(question_menu_screen.getSelected().substring(0, 1)));
     }
     
-    public void changeAlternativeOperation() {
-        selected_survey.changeAlternative(change_alternative_screen.question_id, change_alternative_screen.alt_id, change_alternative_screen.new_alt);
+    public void editQuestionOperation() {
+        selected_survey.editQuestion(edit_question_screen.getQuestion().getId(), edit_question_screen.message);
+        selected_survey.changeAlternative(edit_question_screen.getQuestion().getId(), 'a', edit_question_screen.a);
+        selected_survey.changeAlternative(edit_question_screen.getQuestion().getId(), 'b', edit_question_screen.b);
+        selected_survey.changeAlternative(edit_question_screen.getQuestion().getId(), 'c', edit_question_screen.c);
+        selected_survey.changeAlternative(edit_question_screen.getQuestion().getId(), 'd', edit_question_screen.d);
+        selected_survey.changeAlternative(edit_question_screen.getQuestion().getId(), 'e', edit_question_screen.e);
     }
     
     public void removeAnswerOperation() {

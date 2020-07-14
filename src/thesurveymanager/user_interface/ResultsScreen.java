@@ -20,7 +20,7 @@ public class ResultsScreen extends JPanel {
         TextArea.setColumns(20);
         TextArea.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         TextArea.setRows(5);
-        frame.getSelectedSurvey().questions.forEach(question -> {
+        frame.getSelectedSurvey().getQuestions().forEach(question -> {
             TextArea.append("     " + question.getMessage() + "\n");
             question.getAlternatives().forEach(alt -> {
                 TextArea.append(alt.getMessage() + " --- " + alt.getCount() + " --- " + alt.getPercentage() + "% \n");

@@ -15,12 +15,9 @@ public class Question implements Serializable{
         this.alternatives = new ArrayList<>();
     }
     
+//Getters ----------------------------------------------------------------------
     public int getId() {
         return id;
-    }
-    
-    public void setId(int id) {
-        this.id = id;
     }
     
     public String getMessage() {
@@ -34,7 +31,7 @@ public class Question implements Serializable{
     public int getAnswerCount() {
         return answer_count;
     }
-
+    
     public Alternative getAlternative(char id) {
         Alternative alt = null;
         
@@ -46,6 +43,16 @@ public class Question implements Serializable{
         
         return alt;
     }
+//------------------------------------------------------------------------------
+    
+//Setters ----------------------------------------------------------------------
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public void setMessage(String message) {
+        this.message = message;
+    }    
     
     public void addAnswer(String alternative) {
         answer_count++;
@@ -60,5 +67,5 @@ public class Question implements Serializable{
     public void addAlternative(char option, String alternative) {
         alternatives.add(new Alternative(this, option, alternative));
     }
-    
+//------------------------------------------------------------------------------
 }

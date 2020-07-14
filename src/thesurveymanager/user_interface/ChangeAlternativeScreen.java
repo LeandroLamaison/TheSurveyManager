@@ -174,7 +174,6 @@ public class ChangeAlternativeScreen extends JPanel{
         }
        
         if(isValid) {
-            frame.changeAlternativeOperation();
             frame.showQuestionMenuScreen();
         }
     }                                             

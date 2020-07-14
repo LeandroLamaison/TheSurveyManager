@@ -1,5 +1,7 @@
 package thesurveymanager.user_interface;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class QuestionMenuScreen extends JPanel{
@@ -10,30 +12,37 @@ public class QuestionMenuScreen extends JPanel{
     private javax.swing.JButton MenuButton;
     private javax.swing.JButton RemoveQuestionButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JList jList;
     
     public QuestionMenuScreen(UserInterface frame) {
         this.frame = frame;
         initComponents();
     }
     
+    public String getSelected() {
+        return jList.getSelectedValue().toString();
+    }
+    
     private void initComponents() {
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
-        jTextArea1.setRows(5);
-        frame.getSelectedSurvey().questions.forEach(q -> {
-            jTextArea1.append("      Questão " + (q.getId()) + "\n");
-            jTextArea1.append(q.getMessage() + "\n");
-            q.getAlternatives().forEach(alt -> {
-                jTextArea1.append(alt.getMessage() + "\n");
-            });
-            jTextArea1.append("\n \n");
+        
+        ArrayList<String> questions_array = new ArrayList<>();
+        frame.getSelectedSurvey().getQuestions().forEach(q -> {
+            String string = q.getId() + ")" + q.getMessage();
+            
+            for(int i = 0; i < q.getAlternatives().size(); i++) {
+                string = string + "          " + q.getAlternatives().get(i).getID() + ") " + q.getAlternatives().get(i).getMessage();
+            }
+            
+            questions_array.add(string);
         });
-        jTextArea1.setEditable(false);
+        String[] question_strings = new String[questions_array.size()];
+        for(int i = 0; i < questions_array.size(); i++) {
+            question_strings[i] = questions_array.get(i);
+        }
+        jList = new javax.swing.JList(question_strings);
         
         jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane1.setViewportView(jList);
         
         AddQuestionButton = new javax.swing.JButton();
         AddQuestionButton.setText("Adicionar");
@@ -52,10 +61,10 @@ public class QuestionMenuScreen extends JPanel{
         });
         
         ChangeAlternativeButton = new javax.swing.JButton();
-        ChangeAlternativeButton.setText("Alterar Alternativa");
+        ChangeAlternativeButton.setText("Editar");
         ChangeAlternativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChangeAlternativeButtonActionPerformed(evt);
+                EditQuestionButtonActionPerformed(evt);
             }
         });
         
@@ -72,32 +81,32 @@ public class QuestionMenuScreen extends JPanel{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AddQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(RemoveQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ChangeAlternativeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(AddQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26)
+                        .addComponent(RemoveQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26)
+                        .addComponent(ChangeAlternativeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26)
+                        .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(AddQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(RemoveQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ChangeAlternativeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(MenuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
     }
@@ -107,11 +116,13 @@ public class QuestionMenuScreen extends JPanel{
     }                                                 
 
     private void RemoveQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        frame.showRemoveQuestionScreen();
+        frame.removeQuestionOperation();
+        int delete = JOptionPane.showOptionDialog(null, "Tem certeza de que deseja deletar essa questão?", "Confirmar deleção",);
+        frame.showQuestionMenuScreen();
     }                                                    
 
-    private void ChangeAlternativeButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        frame.showChangeAlternativeScreen();
+    private void EditQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        frame.showEditQuestionScreen(frame.getSelectedSurvey().getQuestion(Integer.parseInt(jList.getSelectedValue().toString().substring(0, 1))));
     }                                                       
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
